@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/xdht-disease.iml" filepath="$PROJECT_DIR$/.idea/xdht-disease.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xdht-disease-common/xdht-disease-common.iml" filepath="$PROJECT_DIR$/xdht-disease-common/xdht-disease-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xdht-disease-gateway/xdht-disease-gateway.iml" filepath="$PROJECT_DIR$/xdht-disease-gateway/xdht-disease-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xdht-disease-registry/xdht-disease-registry.iml" filepath="$PROJECT_DIR$/xdht-disease-registry/xdht-disease-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xdht-disease-sys/xdht-disease-sys.iml" filepath="$PROJECT_DIR$/xdht-disease-sys/xdht-disease-sys.iml" />
+    </modules>
+  </component>
+</project>

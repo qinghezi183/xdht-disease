@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: xdht-disease-registry
+server:
+  port: 7061
+eureka:
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 30000
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
