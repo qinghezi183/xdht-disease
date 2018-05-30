@@ -21,7 +21,7 @@ public abstract class AbstractService<T> implements Service<T> {
     protected Mapper<T> mapper;
 
     @Autowired
-    private UserService userService;
+    private ThreadLocalUserService threadLocalUserService;
     /**
      * 当前泛型真实类型的Class
      */
@@ -33,9 +33,9 @@ public abstract class AbstractService<T> implements Service<T> {
     }
 
     @Override
-    public void save(T model) {
+    public void insertSelective(T model) {
         try {
-            User user = userService.getUser();
+            User user = threadLocalUserService.getUser();
             if (user != null) {
                 Field[] fs = model.getClass().getDeclaredFields();
 
@@ -59,9 +59,9 @@ public abstract class AbstractService<T> implements Service<T> {
     }
 
     @Override
-    public void saveUseGenerateKey(T model) {
+    public void insertUseGeneratedKeys(T model) {
         try {
-            User user = userService.getUser();
+            User user = threadLocalUserService.getUser();
             if (user != null) {
                 Field[] fs = model.getClass().getDeclaredFields();
 
@@ -86,10 +86,10 @@ public abstract class AbstractService<T> implements Service<T> {
 
 
     @Override
-    public void save(List<T> models) {
+    public void insertList(List<T> models) {
 
         try {
-            User user = userService.getUser();
+            User user = threadLocalUserService.getUser();
             if (user != null) {
                 for(T model :models){
                     Field[] fs = model.getClass().getDeclaredFields();
@@ -111,7 +111,7 @@ public abstract class AbstractService<T> implements Service<T> {
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteByPrimaryKey(long id) {
         mapper.deleteByPrimaryKey(id);
     }
 
@@ -121,9 +121,9 @@ public abstract class AbstractService<T> implements Service<T> {
     }
 
     @Override
-    public void update(T model) {
+    public void updateByPrimaryKeySelective(T model) {
         try {
-            User user = userService.getUser();
+            User user = threadLocalUserService.getUser();
             if (user != null) {
                 Field[] fs = model.getClass().getDeclaredFields();
 
@@ -145,12 +145,12 @@ public abstract class AbstractService<T> implements Service<T> {
     }
 
     @Override
-    public T findById(long id) {
+    public T selectByPrimaryKey(long id) {
         return mapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public T findBy(String fieldName, Object value) throws TooManyResultsException {
+    public T selectOne(String fieldName, Object value) throws TooManyResultsException {
         try {
             T model = modelClass.newInstance();
             Field field = modelClass.getDeclaredField(fieldName);
@@ -163,22 +163,22 @@ public abstract class AbstractService<T> implements Service<T> {
     }
 
     @Override
-    public List<T> findByIds(String ids) {
+    public List<T> selectByIds(String ids) {
         return mapper.selectByIds(ids);
     }
 
     @Override
-    public List<T> findByCondition(Condition condition) {
+    public List<T> selectByCondition(Condition condition) {
         return mapper.selectByCondition(condition);
     }
 
     @Override
-    public List<T> findAll() {
+    public List<T> selectAll() {
         return mapper.selectAll();
     }
 
     @Override
-    public T findBy(T model) throws TooManyResultsException{
+    public T selectOne(T model) throws TooManyResultsException{
         return mapper.selectOne(model);
     }
 

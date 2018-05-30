@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
  * @author lzf
  */
 @Service
-public class UserService {
+public class ThreadLocalUserService {
 
     private ThreadLocal<User> loginUser = new ThreadLocal<User>();
 
