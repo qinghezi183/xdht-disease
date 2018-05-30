@@ -1,4 +1,4 @@
-package com.xdht.disease;
+package com.xdht.disease.gateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class XdhtDiseaseRegistryApplicationTests {
+public class XdhtDiseaseGatewayApplicationTests {
 
 	@Test
 	public void contextLoads() {

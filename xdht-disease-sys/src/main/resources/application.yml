@@ -9,6 +9,7 @@ logging:
     level:
         org.springframework.web: DEBUG
         org.springframework.jdbc: DEBUG
+        com.onepro.custom.mapper: DEBUG
         com.xdht: DEBUG
 server:
   port: 7071

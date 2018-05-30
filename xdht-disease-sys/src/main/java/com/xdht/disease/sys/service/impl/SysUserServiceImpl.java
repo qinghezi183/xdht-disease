@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
 
-import javax.annotation.Resource;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
     public List<SysUserResponse> querySysUserList(SysUserRequest sysUserRequest) {
         List<SysUserResponse> sysUserResponseList = new LinkedList<>();
         Condition condition = new Condition(SysUser.class);
-        condition.createCriteria().andLike("userName", sysUserRequest.getUserName());
+        condition.createCriteria().andLike("userName", "%" + sysUserRequest.getUserName() + "%");
         List<SysUser> sysUserList = this.sysUserMapper.selectByCondition(condition);
         if (sysUserList != null && sysUserList.size() > 0) {
             for (SysUser sysUser : sysUserList

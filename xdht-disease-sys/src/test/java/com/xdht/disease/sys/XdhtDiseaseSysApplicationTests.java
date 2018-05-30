@@ -1,4 +1,4 @@
-package com.xdht.disease;
+package com.xdht.disease.sys;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
