@@ -1,10 +1,10 @@
-package com.tbi.clearing.common.authorization.manager.impl;
+package com.xdht.disease.common.authorization.manager.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.tbi.clearing.common.model.User;
-import com.tbi.clearing.common.authorization.manager.TokenManager;
-import com.tbi.clearing.common.model.TokenModel;
-import org.apache.commons.lang.StringUtils;
+import com.xdht.disease.common.model.User;
+import com.xdht.disease.common.authorization.manager.TokenManager;
+import com.xdht.disease.common.model.TokenModel;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author zww
+ * @author lzf
  */
 @Service("redisTokenManager")
 public class RedisTokenManager implements TokenManager {
@@ -28,8 +28,8 @@ public class RedisTokenManager implements TokenManager {
         TokenModel model = new TokenModel(userId, userId+"_"+token,user);
 
         //存储到redis并设置过期时间
-        redisTemplate.opsForValue().set("login_"+userId, token, 8, TimeUnit.HOURS);
-        redisTemplate.opsForValue().set("userInfo_"+userId, JSON.toJSONString(model.getUser()));
+        redisTemplate.opsForValue().set("login_" + userId, token, 8, TimeUnit.HOURS);
+        redisTemplate.opsForValue().set("userInfo_" + userId, JSON.toJSONString(model.getUser()));
         return model;
     }
 
@@ -72,8 +72,8 @@ public class RedisTokenManager implements TokenManager {
 
     @Override
     public boolean deleteToken(User user) {
-        if(user !=null && StringUtils.isNotEmpty(user.getId())){
-            redisTemplate.delete(user.getId());
+        if(user != null && user.getId() != null){
+            redisTemplate.delete("login_" + user.getId());
             return true;
         }
         return false;

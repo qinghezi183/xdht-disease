@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>xdht-disease-common</module>
+        <module>code-generator</module>
     </modules>
 
     <name>xdht-disease</name>
@@ -129,7 +130,7 @@
 
             <!-- 公共jar -->
             <dependency>
-                <groupId>com.xdht.disease.common</groupId>
+                <groupId>com.xdht.disease</groupId>
                 <artifactId>xdht-disease-common</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>

@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="code-generator" />
         <module name="xdht-disease-common" />
         <module name="xdht-disease-gateway" />
         <module name="xdht-disease-registry" />
@@ -13,6 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="code-generator" target="1.8" />
       <module name="xdht-disease" target="1.8" />
       <module name="xdht-disease-common" target="1.8" />
       <module name="xdht-disease-gateway" target="1.8" />

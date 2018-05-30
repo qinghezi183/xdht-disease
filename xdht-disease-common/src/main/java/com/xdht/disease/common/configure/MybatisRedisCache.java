@@ -1,6 +1,6 @@
 package com.xdht.disease.common.configure;
 
-import com.tbi.clearing.common.core.SpringContextHolder;
+import com.xdht.disease.common.core.SpringContextHolder;
 import org.apache.ibatis.cache.Cache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

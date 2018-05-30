@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/code-generator/code-generator.iml" filepath="$PROJECT_DIR$/code-generator/code-generator.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/xdht-disease.iml" filepath="$PROJECT_DIR$/.idea/xdht-disease.iml" />
       <module fileurl="file://$PROJECT_DIR$/xdht-disease-common/xdht-disease-common.iml" filepath="$PROJECT_DIR$/xdht-disease-common/xdht-disease-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/xdht-disease-gateway/xdht-disease-gateway.iml" filepath="$PROJECT_DIR$/xdht-disease-gateway/xdht-disease-gateway.iml" />
