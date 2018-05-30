@@ -11,10 +11,9 @@ public interface TokenManager {
 
     /**
      * 创建一个token关联上指定用户
-     * @param userId 指定用户的id
      * @return 生成的token
      */
-    TokenModel createToken(String userId, User user);
+    TokenModel createToken(User user);
 
     /**
      * 检查token是否有效

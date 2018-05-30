@@ -1,25 +1,25 @@
 package com.xdht.disease.common.authorization.manager.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.xdht.disease.common.model.User;
 import com.xdht.disease.common.authorization.manager.TokenManager;
 import com.xdht.disease.common.model.TokenModel;
+import com.xdht.disease.common.model.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.cache.Cache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 /**
- * @author lzf
+ * Created by L on 2018/5/30.
  */
-@Service("redisTokenManager")
-public class RedisTokenManager implements TokenManager {
+@Service("ehcacheTokenManager")
+public class EhcacheTokenManager implements TokenManager {
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private EhCacheCacheManager ehCacheCacheManager;
 
     @Override
     public TokenModel createToken(User user) {
@@ -27,9 +27,10 @@ public class RedisTokenManager implements TokenManager {
         String token = UUID.randomUUID().toString().replace("-", "");
         TokenModel model = new TokenModel(user.getId(), user.getId()+"_"+token,user);
 
-        //存储到redis并设置过期时间
-        redisTemplate.opsForValue().set("login_" + user.getId(), token, 8, TimeUnit.HOURS);
-        redisTemplate.opsForValue().set("userInfo_" + user.getId(), JSON.toJSONString(model.getUser()));
+        //存储到cache中
+        Cache cache = ehCacheCacheManager.getCache("user");
+        cache.put("login_" + user.getId(), token);
+        cache.put("userInfo_" + user.getId(), JSON.toJSONString(model.getUser()));
         return model;
     }
 
@@ -38,10 +39,11 @@ public class RedisTokenManager implements TokenManager {
         if (model == null) {
             return false;
         }
-        String  token = (String) redisTemplate.opsForValue().get("login_"+model.getUserId());
+        Cache cache = ehCacheCacheManager.getCache("user");
+        String  token = cache.get("login_"+model.getUserId()).toString();
         if (StringUtils.isNotEmpty(token) && token.equals(model.getToken())) {
 
-            String  userJson = (String) redisTemplate.opsForValue().get("userInfo_"+model.getUserId());
+            String  userJson = cache.get("userInfo_"+model.getUserId()).toString();
 
             User user = JSON.parseObject(userJson,User.class);
             if(token.equals(model.getToken())) {
@@ -73,7 +75,9 @@ public class RedisTokenManager implements TokenManager {
     @Override
     public boolean deleteToken(User user) {
         if(user != null && user.getId() != null){
-            redisTemplate.delete("login_" + user.getId());
+            Cache cache = ehCacheCacheManager.getCache("user");
+            cache.evict("login_" + user.getId());
+            cache.evict("userInfo_" + user.getId());
             return true;
         }
         return false;

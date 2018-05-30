@@ -46,6 +46,17 @@
         </dependency>
         <!-- spring boot -->
 
+        <!--ehcache-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
+        <!--ehcache-->
+
         <!--AOP-->
         <dependency>
             <groupId>org.aspectj</groupId>
