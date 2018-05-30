@@ -1,5 +1,6 @@
 package com.xdht.disease.common.configure;
 
+import com.xdht.disease.common.model.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -24,7 +25,8 @@ public class Swagger2 {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.xdht.disease"))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .ignoredParameterTypes(User.class);
     }
 
     private ApiInfo apiInfo() {

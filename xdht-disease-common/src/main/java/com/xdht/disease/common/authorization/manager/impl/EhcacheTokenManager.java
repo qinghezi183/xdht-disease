@@ -40,10 +40,10 @@ public class EhcacheTokenManager implements TokenManager {
             return false;
         }
         Cache cache = ehCacheCacheManager.getCache("user");
-        String  token = cache.get("login_"+model.getUserId()).toString();
+        String  token = cache.get("login_"+model.getUserId()).get().toString();
         if (StringUtils.isNotEmpty(token) && token.equals(model.getToken())) {
 
-            String  userJson = cache.get("userInfo_"+model.getUserId()).toString();
+            String  userJson = cache.get("userInfo_"+model.getUserId()).get().toString();
 
             User user = JSON.parseObject(userJson,User.class);
             if(token.equals(model.getToken())) {

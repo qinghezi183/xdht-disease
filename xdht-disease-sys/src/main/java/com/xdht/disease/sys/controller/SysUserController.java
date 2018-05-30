@@ -1,9 +1,14 @@
 package com.xdht.disease.sys.controller;
 
+import com.xdht.disease.common.authorization.annotation.Authorization;
+import com.xdht.disease.common.authorization.annotation.CurrentUser;
 import com.xdht.disease.common.core.Result;
+import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.service.SysUserService;
 import com.xdht.disease.sys.vo.request.SysUserRequest;
 import com.xdht.disease.sys.vo.response.SysUserResponse;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +35,11 @@ public class SysUserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "查询用户列表")
-    public ResponseEntity<Result<List<SysUserResponse>>> createToken(@RequestBody SysUserRequest sysUserRequest) {
+    @Authorization
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
+    })
+    public ResponseEntity<Result<List<SysUserResponse>>> createToken(@CurrentUser User user, @RequestBody SysUserRequest sysUserRequest) {
         return new ResponseEntity<>(Result.ok(sysUserService.querySysUserList(sysUserRequest)), HttpStatus.OK);
     }
 
