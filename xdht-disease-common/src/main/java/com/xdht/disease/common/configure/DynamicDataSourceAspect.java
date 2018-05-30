@@ -17,13 +17,13 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class DynamicDataSourceAspect implements PriorityOrdered {
 
-    @Pointcut("execution (* com.tbi.clearing.*.service.*.select*(..)) || execution (* com.tbi.clearing.*.service.*.count*(..))  || execution (* com.tbi.clearing.*.service.*.find*(..)) || execution (* com.tbi.clearing.*.service.*.query*(..))")
+    @Pointcut("execution (* com.xdht.disease.*.service.*.select*(..)) || execution (* com.xdht.disease.*.service.*.count*(..))  || execution (* com.xdht.disease.*.service.*.find*(..)) || execution (* com.xdht.disease.*.service.*.query*(..))")
     public void readMethodPointcut() {}
 
-    @Pointcut("execution (* com.tbi.clearing.*.service.*.insert*(..)) || execution (* com.tbi.clearing.*.service.*.update*(..)) || execution (* com.tbi.clearing.*.service.*.delete*(..)) || execution (* com.tbi.clearing.*.service.*.save*(..))")
+    @Pointcut("execution (* com.xdht.disease.*.service.*.insert*(..)) || execution (* com.xdht.disease.*.service.*.update*(..)) || execution (* com.xdht.disease.*.service.*.delete*(..)) || execution (* com.xdht.disease.*.service.*.save*(..))")
     public void writeMethodPointcut() {}
 
-    @Pointcut("execution (* com.tbi.clearing.*.service.*.insert*(..)) || execution (* com.tbi.clearing.*.service.*.update*(..)) || execution (* com.tbi.clearing.*.service.*.delete*(..)) || execution (* com.tbi.clearing.*.service.*.save*(..))")
+    @Pointcut("execution (* com.xdht.disease.*.service.*.insert*(..)) || execution (* com.xdht.disease.*.service.*.update*(..)) || execution (* com.xdht.disease.*.service.*.delete*(..)) || execution (* com.xdht.disease.*.service.*.save*(..))")
     public void obtFrontPointcut() {}
 
     @Before("readMethodPointcut()")

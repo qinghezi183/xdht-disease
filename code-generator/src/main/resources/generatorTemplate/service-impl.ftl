@@ -3,7 +3,7 @@ package ${basePackage}.service.impl;
 import ${basePackage}.dao.${modelNameUpperCamel}Mapper;
 import ${basePackage}.model.${modelNameUpperCamel};
 import ${basePackage}.service.${modelNameUpperCamel}Service;
-import com.obt.common.core.AbstractService;
+import com.xdht.disease.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +15,9 @@ import javax.annotation.Resource;
  */
 @Service
 @Transactional
-public class ${modelNameUpperCamel}ServiceImpl extends AbstractService<${modelNameUpperCamel}> implements ${modelNameUpperCamel}Service {
-    @Resource
+public class ${modelNameUpperCamel}ServiceImpl extends AbstractService<${modelNameUpperCamel}> implements ${modelNameUpperCamel}Service
+
+    @Autowired
     private ${modelNameUpperCamel}Mapper ${modelNameLowerCamel}Mapper;
 
 }

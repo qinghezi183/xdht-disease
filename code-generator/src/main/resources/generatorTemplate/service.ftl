@@ -1,6 +1,6 @@
 package ${basePackage}.service;
 import ${basePackage}.model.${modelNameUpperCamel};
-import com.tbi.clearing.common.core.Service;
+import com.xdht.disease.common.core.Service;
 
 
 /**
