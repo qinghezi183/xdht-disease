@@ -29,7 +29,8 @@ public class LoginController {
     @RequestMapping(value = "/createToken", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "主页生成并保存token")
     public ResponseEntity<Result<LoginResponse>> createToken(@RequestBody LoginRequest loginRequest) {
-        return new ResponseEntity<Result<LoginResponse>>(Result.ok(sysUserService.createToken(loginRequest)), HttpStatus.OK);
+//        return new ResponseEntity<Result<LoginResponse>>(Result.ok(sysUserService.createToken(loginRequest)), HttpStatus.OK);
+        return new ResponseEntity<Result<LoginResponse>>(Result.ok(1), HttpStatus.OK);
     }
 
 }
