@@ -7,7 +7,7 @@ spring:
 #MySQL
   write:
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/disease?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+        url: jdbc:mysql://127.0.0.1:3306/disease2?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
         username: root
         password: 123456
         driver-class-name: com.mysql.jdbc.Driver
@@ -27,7 +27,7 @@ spring:
 #MySQL
   read:
     datasource:
-      url: jdbc:mysql://127.0.0.1:3306/disease?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+      url: jdbc:mysql://127.0.0.1:3306/disease2?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
       username: root
       password: 123456
       driver-class-name: com.mysql.jdbc.Driver
