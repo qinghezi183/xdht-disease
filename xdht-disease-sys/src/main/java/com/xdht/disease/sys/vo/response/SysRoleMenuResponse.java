@@ -35,4 +35,7 @@ public class SysRoleMenuResponse {
     @ApiModelProperty(value = "更新时间")
     private Date updateDate;
 
+    @ApiModelProperty(value = "总数")
+    private Integer count;
+
 }

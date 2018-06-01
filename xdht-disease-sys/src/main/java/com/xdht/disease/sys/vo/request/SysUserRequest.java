@@ -14,6 +14,12 @@ public class SysUserRequest {
     @ApiModelProperty(value = "用户名称")
     private String userName;
 
+    @ApiModelProperty(value = "分页数")
+    private Integer  pageNum;
+
+    @ApiModelProperty(value = "每页数量")
+    private Integer pageSize;
+
 
 
 }

@@ -34,7 +34,7 @@ public class SysUserRoleController {
     private SysUserRoleService sysUserRoleService;
 
     @RequestMapping(value = "/usersRole", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询用户角色列表")
+    @ApiOperation(value = "分页查询用户角色列表")
 //    @Authorization
 //    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),

@@ -32,7 +32,7 @@ public class SysUserController {
     private SysUserService sysUserService;
 
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询用户列表")
+    @ApiOperation(value = "分页查询用户列表")
 //    @Authorization
 //    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
@@ -43,20 +43,20 @@ public class SysUserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "添加用户")
-    public ResponseEntity<Result<SysUserResponse>> addUsers(@CurrentUser User user, @RequestBody SysUser sysUser) {
-        return new ResponseEntity<>(Result.ok(sysUserService.addUsers(sysUser)), HttpStatus.OK);
+    public ResponseEntity<Result<SysUserResponse>> addUser(@CurrentUser User user, @RequestBody SysUser sysUser) {
+        return new ResponseEntity<>(Result.ok(sysUserService.addUser(sysUser)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "删除用户")
-    public ResponseEntity<Result<SysUserResponse>> deleteUsers(@CurrentUser User user, @RequestParam Long id) {
-        return new ResponseEntity<>(Result.ok(sysUserService.deleteUsers(id)), HttpStatus.OK);
+    public ResponseEntity<Result<SysUserResponse>> deleteUser(@CurrentUser User user, @RequestParam Long id) {
+        return new ResponseEntity<>(Result.ok(sysUserService.deleteUser(id)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "修改用户")
-    public ResponseEntity<Result<SysUserResponse>> updateUsers(@CurrentUser User user, @RequestBody SysUser sysUser) {
-        return new ResponseEntity<>(Result.ok(sysUserService.updateUsers(sysUser)), HttpStatus.OK);
+    public ResponseEntity<Result<SysUserResponse>> updateUser(@CurrentUser User user, @RequestBody SysUser sysUser) {
+        return new ResponseEntity<>(Result.ok(sysUserService.updateUser(sysUser)), HttpStatus.OK);
     }
 
 

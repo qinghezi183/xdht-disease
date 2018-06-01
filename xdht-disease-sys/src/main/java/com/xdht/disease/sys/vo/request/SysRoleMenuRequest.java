@@ -16,4 +16,10 @@ public class SysRoleMenuRequest {
     @ApiModelProperty(value = "菜单id")
     private Long menuId;
 
+    @ApiModelProperty(value = "分页数")
+    private Integer  pageNum;
+
+    @ApiModelProperty(value = "每页数量")
+    private Integer pageSize;
+
 }

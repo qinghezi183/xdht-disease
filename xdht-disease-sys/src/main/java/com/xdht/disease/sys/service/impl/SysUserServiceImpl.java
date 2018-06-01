@@ -1,5 +1,6 @@
 package com.xdht.disease.sys.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.xdht.disease.sys.dao.SysUserMapper;
 import com.xdht.disease.sys.model.SysUser;
 import com.xdht.disease.sys.service.SysUserService;
@@ -10,9 +11,7 @@ import com.xdht.disease.sys.vo.request.SysUserRequest;
 import com.xdht.disease.sys.vo.response.SysUserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Condition;
-import java.util.LinkedList;
 import java.util.List;
-import javax.annotation.Resource;
 
 
 /**
@@ -26,25 +25,19 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
         private SysUserMapper sysUserMapper;
 
         @Override
-        public List<SysUserResponse> querySysUserList(SysUserRequest sysUserRequest) {
-            List<SysUserResponse> sysUserResponseList = new LinkedList<>();
+        public List<SysUser> querySysUserList(SysUserRequest sysUserRequest) {
             Condition condition = new Condition(SysUser.class);
+            if (sysUserRequest.getUserName() != null){
             condition.createCriteria().andLike("userName", "%"+sysUserRequest.getUserName()+"%");
-            List<SysUser> sysUserList = this.sysUserMapper.selectByCondition(condition);
-            if (sysUserList != null && sysUserList.size() > 0) {
-                for (SysUser sysUser : sysUserList
-                        ) {
-                    SysUserResponse sysUserResponse = new SysUserResponse();
-                    sysUserResponse.setId(sysUser.getId());
-                    sysUserResponse.setUserName(sysUser.getUserName());
-                    sysUserResponseList.add(sysUserResponse);
-                }
             }
-            return sysUserResponseList;
+            condition.setOrderByClause("id desc");
+            PageHelper.startPage(sysUserRequest.getPageNum(), sysUserRequest.getPageSize());
+            List<SysUser> sysUserList = this.sysUserMapper.selectByCondition(condition);
+            return sysUserList;
         }
 
         @Override
-        public SysUserResponse addUsers(SysUser sysUser) {
+        public SysUserResponse addUser(SysUser sysUser) {
         this.sysUserMapper.insertUseGeneratedKeys(sysUser);
         SysUserResponse sysUserResponse = new SysUserResponse();
         sysUserResponse.setId(sysUser.getId());
@@ -53,7 +46,7 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
         }
 
     @Override
-    public SysUserResponse deleteUsers(Long id) {
+    public SysUserResponse deleteUser(Long id) {
         this.sysUserMapper.deleteByPrimaryKey(id);
         SysUserResponse sysUserResponse = new SysUserResponse();
         sysUserResponse.setId(id);
@@ -61,7 +54,7 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
     }
 
     @Override
-    public SysUserResponse updateUsers(SysUser sysUser) {
+    public SysUserResponse updateUser(SysUser sysUser) {
 
         this.sysUserMapper.updateByPrimaryKeySelective(sysUser);
         SysUserResponse sysUserResponse = new SysUserResponse();

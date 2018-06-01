@@ -33,25 +33,25 @@ public class SysRoleMenuController {
     private SysRoleMenuService sysRoleMenuService;
 
     @RequestMapping(value = "/roleMenus", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询角色列表")
+    @ApiOperation(value = "分页查询角色菜单列表")
     public ResponseEntity<Result<List<SysRoleMenu>>> createToken(@CurrentUser User user, @RequestBody SysRoleMenuRequest sysRoleMenuRequest) {
         return new ResponseEntity<>(Result.ok(sysRoleMenuService.querySysRoleMenuList(sysRoleMenuRequest)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "添加角色")
+    @ApiOperation(value = "添加角色菜单")
     public ResponseEntity<Result<SysRoleMenuResponse>> addRoleMenu(@CurrentUser User user, @RequestBody SysRoleMenu sysRoleMenu) {
         return new ResponseEntity<>(Result.ok(sysRoleMenuService.addRoleMenu(sysRoleMenu)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "删除角色")
+    @ApiOperation(value = "删除角色菜单")
     public ResponseEntity<Result<SysRoleMenuResponse>> deleteRoleMenu(@CurrentUser User user, @RequestParam Long id) {
         return new ResponseEntity<>(Result.ok(sysRoleMenuService.deleteRoleMenu(id)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "修改用户")
+    @ApiOperation(value = "修改角色菜单")
     public ResponseEntity<Result<SysRoleMenuResponse>> updateRoleMenu(@CurrentUser User user, @RequestBody SysRoleMenu sysRoleMenu) {
         return new ResponseEntity<>(Result.ok(sysRoleMenuService.updateRoleMenu(sysRoleMenu)), HttpStatus.OK);
     }
