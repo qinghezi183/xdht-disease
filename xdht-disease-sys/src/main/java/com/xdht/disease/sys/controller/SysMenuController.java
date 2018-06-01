@@ -29,25 +29,25 @@ public class SysMenuController {
     private SysMenuService sysMenuService;
 
     @RequestMapping(value = "/menus", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询菜单列表")
+    @ApiOperation(value = "分页查询菜单列表")
     public ResponseEntity<Result<List<SysMenu>>> createToken(@CurrentUser User user, @RequestBody SysMenuRequest sysMenuRequest) {
         return new ResponseEntity<>(Result.ok(sysMenuService.querySysMenuList(sysMenuRequest)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "添加用户")
+    @ApiOperation(value = "添加菜单")
     public ResponseEntity<Result<SysMenuResponse>> addMenu(@CurrentUser User user, @RequestBody SysMenu sysMenu) {
         return new ResponseEntity<>(Result.ok(sysMenuService.addMenu(sysMenu)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "删除用户")
+    @ApiOperation(value = "删除菜单")
     public ResponseEntity<Result<SysMenuResponse>> deleteMenu(@CurrentUser User user, @RequestParam Long id) {
         return new ResponseEntity<>(Result.ok(sysMenuService.deleteMenu(id)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "修改用户")
+    @ApiOperation(value = "修改菜单")
     public ResponseEntity<Result<SysMenuResponse>> updateMenu(@CurrentUser User user, @RequestBody SysMenu sysMenu) {
         return new ResponseEntity<>(Result.ok(sysMenuService.updateMenu(sysMenu)), HttpStatus.OK);
     }

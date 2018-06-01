@@ -29,7 +29,7 @@ public class SysRoleController {
     private SysRoleService sysRoleService;
 
     @RequestMapping(value = "/roles", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询角色列表")
+    @ApiOperation(value = "分页查询角色列表")
     public ResponseEntity<Result<List<SysRoleResponse>>> createToken(@CurrentUser User user, @RequestBody SysRoleRequest sysRoleRequest) {
         return new ResponseEntity<>(Result.ok(sysRoleService.querySysRoleList(sysRoleRequest)), HttpStatus.OK);
     }
@@ -47,11 +47,10 @@ public class SysRoleController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "修改用户")
+    @ApiOperation(value = "修改角色")
     public ResponseEntity<Result<SysRoleResponse>> updateRole(@CurrentUser User user, @RequestBody SysRole sysRole) {
         return new ResponseEntity<>(Result.ok(sysRoleService.updateRole(sysRole)), HttpStatus.OK);
     }
-
 
 
 }

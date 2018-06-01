@@ -15,7 +15,7 @@ public interface SysRoleService extends Service<SysRole> {
     /**
      * 查询角色列表
      * @param sysRoleRequest 查询条件
-     * @return
+     * @return 返回结果
      */
     public List<SysRole> querySysRoleList(SysRoleRequest sysRoleRequest);
 

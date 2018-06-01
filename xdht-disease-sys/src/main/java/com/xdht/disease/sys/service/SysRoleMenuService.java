@@ -28,8 +28,8 @@ public interface SysRoleMenuService extends Service<SysRoleMenu> {
 
     /**
      * 删除角色菜单
-     * @param id
-     * @return 返回结果 角色菜单id
+     * @param id 角色菜单id
+     * @return 返回结果
      */
     public SysRoleMenuResponse  deleteRoleMenu(Long id);
 

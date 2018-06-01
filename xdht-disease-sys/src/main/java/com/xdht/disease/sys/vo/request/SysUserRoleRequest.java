@@ -15,5 +15,11 @@ public class SysUserRoleRequest {
     @ApiModelProperty(value = "角色id")
     private Long roleId;
 
+    @ApiModelProperty(value = "分页数")
+    private Integer  pageNum;
+
+    @ApiModelProperty(value = "每页数量")
+    private Integer pageSize;
+
 
 }

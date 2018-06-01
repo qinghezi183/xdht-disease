@@ -37,4 +37,7 @@ public class SysRoleResponse {
 
     @ApiModelProperty(value = "备注信息")
     private String remarks;
+
+    @ApiModelProperty(value = "总数")
+    private Integer count;
 }

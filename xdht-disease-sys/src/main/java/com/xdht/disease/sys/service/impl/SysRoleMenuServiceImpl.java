@@ -1,12 +1,11 @@
 package com.xdht.disease.sys.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
 import com.xdht.disease.sys.dao.SysRoleMenuMapper;
-import com.xdht.disease.sys.model.SysMenu;
 import com.xdht.disease.sys.model.SysRoleMenu;
 import com.xdht.disease.sys.service.SysRoleMenuService;
 import com.xdht.disease.sys.vo.request.SysRoleMenuRequest;
-import com.xdht.disease.sys.vo.response.SysMenuResponse;
 import com.xdht.disease.sys.vo.response.SysRoleMenuResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +30,8 @@ public class SysRoleMenuServiceImpl extends AbstractService<SysRoleMenu> impleme
             Condition condition = new Condition(SysRoleMenu.class);
             condition.createCriteria().andEqualTo("roleId", sysRoleMenuRequest.getRoleId())
                     .andEqualTo("menuId", sysRoleMenuRequest.getMenuId());
+            condition.setOrderByClause("id desc");
+            PageHelper.startPage(sysRoleMenuRequest.getPageNum(), sysRoleMenuRequest.getPageSize());
             List<SysRoleMenu> sysRoleMenuList = this.sysRoleMenuMapper.selectByCondition(condition);
             return sysRoleMenuList;
         }

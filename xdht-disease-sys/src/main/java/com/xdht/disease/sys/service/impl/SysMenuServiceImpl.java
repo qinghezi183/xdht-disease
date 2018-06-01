@@ -1,5 +1,6 @@
 package com.xdht.disease.sys.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
 import com.xdht.disease.sys.dao.SysMenuMapper;
 import com.xdht.disease.sys.model.SysMenu;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
 
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -28,7 +28,12 @@ public class SysMenuServiceImpl extends AbstractService<SysMenu> implements SysM
         @Override
         public List<SysMenu> querySysMenuList(SysMenuRequest sysMenuRequest) {
             Condition condition = new Condition(SysMenu.class);
-            condition.createCriteria().andLike("menuName", "%"+sysMenuRequest.getMenuName()+"%");
+
+            if (sysMenuRequest.getMenuName() != null) {
+                condition.createCriteria().andLike("menuName","%"+sysMenuRequest.getMenuName()+"%");
+            }
+            condition.setOrderByClause("id desc");
+            PageHelper.startPage(sysMenuRequest.getPageNum(), sysMenuRequest.getPageSize());
             List<SysMenu> sysMenuList = this.sysMenuMapper.selectByCondition(condition);
             return sysMenuList;
         }

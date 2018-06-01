@@ -12,6 +12,12 @@ public class SysMenuRequest {
     @ApiModelProperty(value = "菜单名称")
     private String menuName;
 
+    @ApiModelProperty(value = "分页数")
+    private Integer  pageNum;
+
+    @ApiModelProperty(value = "每页数量")
+    private Integer pageSize;
+
 
 
 }
