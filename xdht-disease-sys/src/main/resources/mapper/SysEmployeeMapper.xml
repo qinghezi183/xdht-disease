@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.SysEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.SysEmployee">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="office_id" jdbcType="BIGINT" property="officeId" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="emp_sex" jdbcType="CHAR" property="empSex" />
+    <result column="emp_native" jdbcType="VARCHAR" property="empNative" />
+    <result column="emp_marriage" jdbcType="CHAR" property="empMarriage" />
+    <result column="emp_education" jdbcType="CHAR" property="empEducation" />
+    <result column="emp_hobby" jdbcType="VARCHAR" property="empHobby" />
+    <result column="emp_work_date" jdbcType="DATE" property="empWorkDate" />
+    <result column="emp_identity_number" jdbcType="VARCHAR" property="empIdentityNumber" />
+    <result column="emp_photo_url" jdbcType="VARCHAR" property="empPhotoUrl" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+</mapper>

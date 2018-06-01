@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.SysEmployeeJobMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.SysEmployeeJob">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
+    <result column="begin_date" jdbcType="DATE" property="beginDate" />
+    <result column="end_date" jdbcType="DATE" property="endDate" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="work_type" jdbcType="BIGINT" property="workType" />
+    <result column="noise_detection_results" jdbcType="VARCHAR" property="noiseDetectionResults" />
+    <result column="protective_measures" jdbcType="VARCHAR" property="protectiveMeasures" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+</mapper>
