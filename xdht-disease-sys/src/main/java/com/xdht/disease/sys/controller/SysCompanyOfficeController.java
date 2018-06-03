@@ -1,6 +1,7 @@
 package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysCompanyOffice;
@@ -28,15 +29,15 @@ public class SysCompanyOfficeController {
     @Autowired
     private SysCompanyOfficeService sysCompanyOfficeService;
 
-    @RequestMapping(value = "/companyOffices", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询单位部门列表分页")
-//    @Authorization
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
-//    })
-    public ResponseEntity<Result<List<SysCompanyOffice>>> createToken(@CurrentUser User user, @RequestBody SysCompanyOfficeRequest sysCompanyOfficeRequest) {
-        return new ResponseEntity<>(Result.ok(sysCompanyOfficeService.querySysCompanyOfficeListPage(sysCompanyOfficeRequest)), HttpStatus.OK);
-
+    @RequestMapping(value = "/companyOfficePage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "分页查询单位部门列表")
+    public ResponseEntity<Result<PageResult<SysCompanyOffice>>> companyOfficePage(@CurrentUser User user, @RequestBody SysCompanyOfficeRequest sysCompanyOfficeRequest) {
+        return new ResponseEntity<>(Result.ok(sysCompanyOfficeService.querySysCompanyOfficePage(sysCompanyOfficeRequest)), HttpStatus.OK);
+    }
+    @RequestMapping(value = "/companyOfficeList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询单位部门列表")
+    public ResponseEntity<Result<List<SysCompanyOffice>>> companyOfficeList(@CurrentUser User user, @RequestBody SysCompanyOffice sysCompanyOffice) {
+        return new ResponseEntity<>(Result.ok(sysCompanyOfficeService.querySysCompanyOfficeList(sysCompanyOffice)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

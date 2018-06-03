@@ -1,6 +1,7 @@
 package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysRole;
@@ -28,10 +29,15 @@ public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
 
-    @RequestMapping(value = "/roles", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/rolePage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "分页查询角色列表")
-    public ResponseEntity<Result<List<SysRoleResponse>>> createToken(@CurrentUser User user, @RequestBody SysRoleRequest sysRoleRequest) {
-        return new ResponseEntity<>(Result.ok(sysRoleService.querySysRoleList(sysRoleRequest)), HttpStatus.OK);
+    public ResponseEntity<Result<PageResult<SysRoleResponse>>> rolePage(@CurrentUser User user, @RequestBody SysRoleRequest sysRoleRequest) {
+        return new ResponseEntity<>(Result.ok(sysRoleService.querySysRolePage(sysRoleRequest)), HttpStatus.OK);
+    }
+    @RequestMapping(value = "/roleList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询角色列表")
+    public ResponseEntity<Result<List<SysRoleResponse>>> roleList(@CurrentUser User user, @RequestBody SysRole sysRole) {
+        return new ResponseEntity<>(Result.ok(sysRoleService.querySysRoleList(sysRole)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

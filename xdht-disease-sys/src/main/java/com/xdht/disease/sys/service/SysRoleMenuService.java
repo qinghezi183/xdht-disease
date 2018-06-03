@@ -1,4 +1,5 @@
 package com.xdht.disease.sys.service;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.model.SysRoleMenu;
 import com.xdht.disease.common.core.Service;
 import com.xdht.disease.sys.vo.request.SysRoleMenuRequest;
@@ -13,11 +14,18 @@ import java.util.List;
 public interface SysRoleMenuService extends Service<SysRoleMenu> {
 
     /**
-     * 查询角色菜单
+     * 分页查询角色菜单
      * @param sysRoleMenuRequest 查询条件
      * @return 返回结果
      */
-    public List<SysRoleMenu> querySysRoleMenuList(SysRoleMenuRequest sysRoleMenuRequest);
+    public PageResult<SysRoleMenu> querySysRoleMenuPage(SysRoleMenuRequest sysRoleMenuRequest);
+
+    /**
+     * 查询角色菜单列表
+     * @param sysRoleMenu 查询条件
+     * @return 返回结果
+     */
+    public List<SysRoleMenu> querySysRoleMenuList(SysRoleMenu sysRoleMenu);
 
     /**
      * 添加角色菜单
@@ -39,4 +47,6 @@ public interface SysRoleMenuService extends Service<SysRoleMenu> {
      * @return 返回结果
      */
     public SysRoleMenuResponse updateRoleMenu(SysRoleMenu sysRoleMenu);
+
+
 }

@@ -2,6 +2,7 @@ package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysEmployeeDiseaseMapper;
 import com.xdht.disease.sys.model.SysEmployeeCase;
 import com.xdht.disease.sys.model.SysEmployeeDisease;
@@ -28,15 +29,34 @@ public class SysEmployeeDiseaseServiceImpl extends AbstractService<SysEmployeeDi
     private SysEmployeeDiseaseMapper sysEmployeeDiseaseMapper;
 
         @Override
-        public List<SysEmployeeDisease> querySysEmpDiseaseListPage(SysEmployeeDiseaseRequest sysEmployeeDiseaseRequest) {
-            Condition condition = new Condition(SysEmployeeCase.class);
+        public PageResult<SysEmployeeDisease> querySysEmpDiseasePage(SysEmployeeDiseaseRequest sysEmployeeDiseaseRequest) {
+            Condition condition = new Condition(SysEmployeeDisease.class);
             condition.createCriteria()
                     .andEqualTo("employeeId", sysEmployeeDiseaseRequest.getEmployeeId());
             if (sysEmployeeDiseaseRequest.getDiseaseName() != null) {
-                condition.getOredCriteria().get(0).andLike("caseName","%"+sysEmployeeDiseaseRequest.getDiseaseName()+"%");
+                condition.getOredCriteria().get(0).andLike("diseaseName","%"+sysEmployeeDiseaseRequest.getDiseaseName()+"%");
             }
             condition.setOrderByClause("id desc");
+//            SysEmployeeDisease sysEmployeeDisease = new SysEmployeeDisease();
+//            sysEmployeeDisease.setEmployeeId(sysEmployeeDiseaseRequest.getEmployeeId());
+//            sysEmployeeDisease.setDiseaseName(sysEmployeeDiseaseRequest.getDiseaseName());
+//            Integer count = this.sysEmployeeDiseaseMapper.selectCount(sysEmployeeDisease);
             PageHelper.startPage(sysEmployeeDiseaseRequest.getPageNum(), sysEmployeeDiseaseRequest.getPageSize());
+            List<SysEmployeeDisease> sysEmployeeDiseaseList = this.sysEmployeeDiseaseMapper.selectByCondition(condition);
+            PageResult<SysEmployeeDisease> pageList = new PageResult<SysEmployeeDisease>();
+            pageList.setTotal(sysEmployeeDiseaseList.size());
+            pageList.setDataList(sysEmployeeDiseaseList);
+            return pageList;
+        }
+        @Override
+        public List<SysEmployeeDisease> querySysEmpDiseaseList(SysEmployeeDisease sysEmployeeDisease) {
+            Condition condition = new Condition(SysEmployeeDisease.class);
+            condition.createCriteria()
+                    .andEqualTo("employeeId", sysEmployeeDisease.getEmployeeId());
+            if (sysEmployeeDisease.getDiseaseName() != null) {
+                condition.getOredCriteria().get(0).andLike("diseaseName","%"+sysEmployeeDisease.getDiseaseName()+"%");
+            }
+            condition.setOrderByClause("id desc");
             List<SysEmployeeDisease> sysEmployeeDiseaseList = this.sysEmployeeDiseaseMapper.selectByCondition(condition);
             return sysEmployeeDiseaseList;
         }
@@ -66,5 +86,7 @@ public class SysEmployeeDiseaseServiceImpl extends AbstractService<SysEmployeeDi
             sysEmployeeDiseaseResponse.setDiseaseName(sysEmployeeDisease.getDiseaseName());
             return sysEmployeeDiseaseResponse;
         }
+
+
 
 }

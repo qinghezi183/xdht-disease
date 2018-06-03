@@ -1,4 +1,5 @@
 package com.xdht.disease.sys.service;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.model.SysUser;
 import com.xdht.disease.common.core.Service;
 import com.xdht.disease.sys.vo.request.SysUserRequest;
@@ -13,11 +14,18 @@ import java.util.List;
 public interface SysUserService extends Service<SysUser> {
 
     /**
-     * 查询用户列表
+     * 分页查询用户
      * @param sysUserRequest 查询条件
      * @return 返回结果
      */
-    public List<SysUser> querySysUserList(SysUserRequest sysUserRequest);
+    public PageResult<SysUser> querySysUserPage(SysUserRequest sysUserRequest);
+
+    /**
+     * 查询用户列表
+     * @param sysUser 查询条件
+     * @return 返回结果
+     */
+    public List<SysUser> querySysUserList(SysUser sysUser);
 
     /**
      * 添加用户
@@ -39,4 +47,6 @@ public interface SysUserService extends Service<SysUser> {
      * @return 返回结果
      */
     public SysUserResponse  updateUser(SysUser sysUser);
+
+
 }

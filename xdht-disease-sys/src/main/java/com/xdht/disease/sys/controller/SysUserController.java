@@ -2,6 +2,7 @@ package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.Authorization;
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysUser;
@@ -31,15 +32,23 @@ public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/userPage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "分页查询用户列表")
 //    @Authorization
 //    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
 //    })
-    public ResponseEntity<Result<List<SysUserResponse>>> createToken(@CurrentUser User user, @RequestBody SysUserRequest sysUserRequest) {
-        return new ResponseEntity<>(Result.ok(sysUserService.querySysUserList(sysUserRequest)), HttpStatus.OK);
+    public ResponseEntity<Result<PageResult<SysUser>>> userPage(@CurrentUser User user, @RequestBody SysUserRequest sysUserRequest) {
+        return new ResponseEntity<>(Result.ok(sysUserService.querySysUserPage(sysUserRequest)), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/userList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询用户列表")
+    public ResponseEntity<Result<List<SysUser>>> userList(@CurrentUser User user, @RequestBody SysUser sysUser) {
+        return new ResponseEntity<>(Result.ok(sysUserService.querySysUserList(sysUser)), HttpStatus.OK);
+    }
+
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "添加用户")

@@ -2,6 +2,7 @@ package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysRoleMenuMapper;
 import com.xdht.disease.sys.model.SysRoleMenu;
 import com.xdht.disease.sys.service.SysRoleMenuService;
@@ -26,12 +27,28 @@ public class SysRoleMenuServiceImpl extends AbstractService<SysRoleMenu> impleme
     private SysRoleMenuMapper sysRoleMenuMapper;
 
         @Override
-        public List<SysRoleMenu> querySysRoleMenuList(SysRoleMenuRequest sysRoleMenuRequest) {
+        public PageResult<SysRoleMenu> querySysRoleMenuPage(SysRoleMenuRequest sysRoleMenuRequest) {
             Condition condition = new Condition(SysRoleMenu.class);
             condition.createCriteria().andEqualTo("roleId", sysRoleMenuRequest.getRoleId())
                     .andEqualTo("menuId", sysRoleMenuRequest.getMenuId());
             condition.setOrderByClause("id desc");
+//            SysRoleMenu sysRoleMenu = new SysRoleMenu();
+//            sysRoleMenu.setRoleId(sysRoleMenuRequest.getRoleId());
+//            sysRoleMenu.setMenuId(sysRoleMenuRequest.getMenuId());
+//            Integer count = this.sysRoleMenuMapper.selectCount(sysRoleMenu);
             PageHelper.startPage(sysRoleMenuRequest.getPageNum(), sysRoleMenuRequest.getPageSize());
+            List<SysRoleMenu> sysRoleMenuList = this.sysRoleMenuMapper.selectByCondition(condition);
+            PageResult<SysRoleMenu> pageList = new PageResult<SysRoleMenu>();
+            pageList.setDataList(sysRoleMenuList);
+            pageList.setTotal(sysRoleMenuList.size());
+            return pageList;
+        }
+        @Override
+        public List<SysRoleMenu> querySysRoleMenuList(SysRoleMenu sysRoleMenu) {
+            Condition condition = new Condition(SysRoleMenu.class);
+            condition.createCriteria().andEqualTo("roleId", sysRoleMenu.getRoleId())
+                    .andEqualTo("menuId", sysRoleMenu.getMenuId());
+            condition.setOrderByClause("id desc");
             List<SysRoleMenu> sysRoleMenuList = this.sysRoleMenuMapper.selectByCondition(condition);
             return sysRoleMenuList;
         }

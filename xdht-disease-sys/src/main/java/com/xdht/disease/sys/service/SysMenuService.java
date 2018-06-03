@@ -1,4 +1,5 @@
 package com.xdht.disease.sys.service;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.model.SysMenu;
 import com.xdht.disease.common.core.Service;
 import com.xdht.disease.sys.vo.request.SysMenuRequest;
@@ -13,11 +14,18 @@ import java.util.List;
 public interface SysMenuService extends Service<SysMenu> {
 
     /**
-     * 查询菜单列表
+     * 分页查询菜单
      * @param sysMenuRequest 查询条件
      * @return 返回结果
      */
-    public List<SysMenu> querySysMenuList(SysMenuRequest sysMenuRequest);
+    public PageResult<SysMenu> querySysMenuPage(SysMenuRequest sysMenuRequest);
+
+    /**
+     * 查询菜单列表
+     * @param sysMenu 查询条件
+     * @return 返回结果
+     */
+    public List<SysMenu> querySysMenuList(SysMenu sysMenu);
 
     /**
      * 添加菜单
@@ -39,5 +47,6 @@ public interface SysMenuService extends Service<SysMenu> {
      * @return 返回结果
      */
     public SysMenuResponse  updateMenu(SysMenu sysMenu);
+
 
 }

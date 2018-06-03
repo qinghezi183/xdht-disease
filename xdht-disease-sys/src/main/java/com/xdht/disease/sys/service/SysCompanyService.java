@@ -1,4 +1,5 @@
 package com.xdht.disease.sys.service;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.model.SysCompany;
 import com.xdht.disease.common.core.Service;
 import com.xdht.disease.sys.vo.request.SysCompanyRequest;
@@ -17,7 +18,7 @@ public interface SysCompanyService extends Service<SysCompany> {
      * @param sysCompanyRequest 查询条件
      * @return 返回结果
      */
-    public List<SysCompany> querySysCompanyListPage(SysCompanyRequest sysCompanyRequest);
+    public PageResult<SysCompany> querySysCompanyListPage(SysCompanyRequest sysCompanyRequest);
 
     /**
      * 添加单位
@@ -39,4 +40,11 @@ public interface SysCompanyService extends Service<SysCompany> {
      * @return 返回结果
      */
     public SysCompanyResponse updateCompany(SysCompany sysCompany);
+
+    /**
+     * 公司列表查询
+     * @param sysCompany 查询条件
+     * @return 返回结果
+     */
+    public List<SysCompany> querySysCompanyList(SysCompany sysCompany);
 }

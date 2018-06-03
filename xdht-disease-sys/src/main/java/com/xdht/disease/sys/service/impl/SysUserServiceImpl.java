@@ -1,6 +1,7 @@
 package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysUserMapper;
 import com.xdht.disease.sys.model.SysUser;
 import com.xdht.disease.sys.service.SysUserService;
@@ -25,16 +26,34 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
         private SysUserMapper sysUserMapper;
 
         @Override
-        public List<SysUser> querySysUserList(SysUserRequest sysUserRequest) {
+        public PageResult<SysUser> querySysUserPage(SysUserRequest sysUserRequest) {
             Condition condition = new Condition(SysUser.class);
             if (sysUserRequest.getUserName() != null){
-            condition.createCriteria().andLike("userName", "%"+sysUserRequest.getUserName()+"%");
+                condition.createCriteria().andLike("userName", "%"+sysUserRequest.getUserName()+"%");
             }
             condition.setOrderByClause("id desc");
+//            SysUser sysUser = new SysUser();
+//            sysUser.setUserName(sysUserRequest.getUserName());
+//            Integer count = this.sysUserMapper.selectCount(sysUser);
             PageHelper.startPage(sysUserRequest.getPageNum(), sysUserRequest.getPageSize());
+            List<SysUser> sysUserList = this.sysUserMapper.selectByCondition(condition);
+            PageResult<SysUser> pageList = new PageResult<SysUser>();
+            pageList.setDataList(sysUserList);
+            pageList.setTotal(sysUserList.size());
+            return pageList;
+        }
+
+        @Override
+        public List<SysUser> querySysUserList(SysUser sysUser) {
+            Condition condition = new Condition(SysUser.class);
+            if (sysUser.getUserName() != null){
+            condition.createCriteria().andLike("userName", "%"+sysUser.getUserName()+"%");
+            }
+            condition.setOrderByClause("id desc");
             List<SysUser> sysUserList = this.sysUserMapper.selectByCondition(condition);
             return sysUserList;
         }
+
 
         @Override
         public SysUserResponse addUser(SysUser sysUser) {

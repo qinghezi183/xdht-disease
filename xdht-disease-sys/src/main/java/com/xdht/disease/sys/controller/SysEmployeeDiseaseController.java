@@ -1,6 +1,7 @@
 package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysEmployeeDisease;
@@ -28,14 +29,21 @@ public class SysEmployeeDiseaseController {
     @Autowired
     private SysEmployeeDiseaseService sysEmployeeDiseaseService;
 
-    @RequestMapping(value = "/employeeDiseases", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询员工职业病列表分页")
+    @RequestMapping(value = "/employeeDiseasePage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "分页查询员工职业病列表")
 //    @Authorization
 //    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
 //    })
-    public ResponseEntity<Result<List<SysEmployeeDisease>>> createToken(@CurrentUser User user, @RequestBody SysEmployeeDiseaseRequest sysEmployeeDiseaseRequest) {
-        return new ResponseEntity<>(Result.ok(sysEmployeeDiseaseService.querySysEmpDiseaseListPage(sysEmployeeDiseaseRequest)), HttpStatus.OK);
+    public ResponseEntity<Result<PageResult<SysEmployeeDisease>>> employeeDiseasePage(@CurrentUser User user, @RequestBody SysEmployeeDiseaseRequest sysEmployeeDiseaseRequest) {
+        return new ResponseEntity<>(Result.ok(sysEmployeeDiseaseService.querySysEmpDiseasePage(sysEmployeeDiseaseRequest)), HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "/employeeDiseaseList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询员工职业病列表")
+    public ResponseEntity<Result<List<SysEmployeeDisease>>> employeeDiseaseList(@CurrentUser User user, @RequestBody SysEmployeeDisease sysEmployeeDisease) {
+        return new ResponseEntity<>(Result.ok(sysEmployeeDiseaseService.querySysEmpDiseaseList(sysEmployeeDisease)), HttpStatus.OK);
 
     }
 

@@ -2,6 +2,7 @@ package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.Authorization;
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysUser;
@@ -33,15 +34,23 @@ public class SysUserRoleController {
     @Autowired
     private SysUserRoleService sysUserRoleService;
 
-    @RequestMapping(value = "/usersRole", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/usersRolePage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "分页查询用户角色列表")
 //    @Authorization
 //    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
 //    })
-    public ResponseEntity<Result<List<SysUserRoleResponse>>> createToken(@CurrentUser User user, @RequestBody SysUserRoleRequest sysUserRoleRequest) {
-        return new ResponseEntity<>(Result.ok(sysUserRoleService.querySysUserRoleList(sysUserRoleRequest)), HttpStatus.OK);
+    public ResponseEntity<Result<PageResult<SysUserRole>>> usersRolePage(@CurrentUser User user, @RequestBody SysUserRoleRequest sysUserRoleRequest) {
+        return new ResponseEntity<>(Result.ok(sysUserRoleService.querySysUserRolePage(sysUserRoleRequest)), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/usersRoleList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询用户角色列表")
+    public ResponseEntity<Result<List<SysUserRole>>> usersRoleList(@CurrentUser User user, @RequestBody SysUserRole sysUserRole) {
+        return new ResponseEntity<>(Result.ok(sysUserRoleService.querySysUserRoleList(sysUserRole)), HttpStatus.OK);
+    }
+
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "添加用户角色")

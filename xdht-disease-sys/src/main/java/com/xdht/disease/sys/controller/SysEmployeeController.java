@@ -1,6 +1,7 @@
 package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysEmployee;
@@ -28,14 +29,21 @@ public class SysEmployeeController {
     @Autowired
     private SysEmployeeService sysEmployeeService;
 
-    @RequestMapping(value = "/employees", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询员工列表分页")
+    @RequestMapping(value = "/employeePage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "分页查询员工列表")
 //    @Authorization
 //    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
 //    })
-    public ResponseEntity<Result<List<SysEmployee>>> createToken(@CurrentUser User user, @RequestBody SysEmployeeRequest sysEmployeeRequest) {
-        return new ResponseEntity<>(Result.ok(sysEmployeeService.querySysEmpListPage(sysEmployeeRequest)), HttpStatus.OK);
+    public ResponseEntity<Result<PageResult<SysEmployee>>> employeePage(@CurrentUser User user, @RequestBody SysEmployeeRequest sysEmployeeRequest) {
+        return new ResponseEntity<>(Result.ok(sysEmployeeService.querySysEmpPage(sysEmployeeRequest)), HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "/employeeList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询员工列表")
+    public ResponseEntity<Result<List<SysEmployee>>> employeeList(@CurrentUser User user, @RequestBody SysEmployee sysEmployee) {
+        return new ResponseEntity<>(Result.ok(sysEmployeeService.querySysEmpList(sysEmployee)), HttpStatus.OK);
 
     }
 
