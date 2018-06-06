@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.RecordOtherProtectiveFacilitiesDataMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.RecordOtherProtectiveFacilitiesData">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="office_id" jdbcType="BIGINT" property="officeId" />
+    <result column="post_id" jdbcType="BIGINT" property="postId" />
+    <result column="work_place" jdbcType="VARCHAR" property="workPlace" />
+    <result column="hazard_factors" jdbcType="VARCHAR" property="hazardFactors" />
+    <result column="protective_facilities" jdbcType="VARCHAR" property="protectiveFacilities" />
+    <result column="operation_and_maintenance" jdbcType="VARCHAR" property="operationAndMaintenance" />
+  </resultMap>
+</mapper>

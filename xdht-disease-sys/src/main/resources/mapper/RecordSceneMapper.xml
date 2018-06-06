@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.RecordSceneMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.RecordScene">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="record_no" jdbcType="VARCHAR" property="recordNo" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="inquiry_type" jdbcType="CHAR" property="inquiryType" />
+    <result column="inquiry_person" jdbcType="VARCHAR" property="inquiryPerson" />
+    <result column="inquiry_company" jdbcType="BIGINT" property="inquiryCompany" />
+    <result column="inquiry_company_employee" jdbcType="BIGINT" property="inquiryCompanyEmployee" />
+    <result column="inquiry_date" jdbcType="DATE" property="inquiryDate" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+</mapper>

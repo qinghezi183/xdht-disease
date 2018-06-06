@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.RecordProductDataMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.RecordProductData">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_office_id" jdbcType="BIGINT" property="companyOfficeId" />
+    <result column="process_name" jdbcType="VARCHAR" property="processName" />
+    <result column="product_type" jdbcType="VARCHAR" property="productType" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_shape" jdbcType="VARCHAR" property="productShape" />
+    <result column="chemical_composition" jdbcType="VARCHAR" property="chemicalComposition" />
+    <result column="storage_mode" jdbcType="VARCHAR" property="storageMode" />
+    <result column="transport_mode" jdbcType="VARCHAR" property="transportMode" />
+    <result column="annual_amount" jdbcType="VARCHAR" property="annualAmount" />
+  </resultMap>
+</mapper>

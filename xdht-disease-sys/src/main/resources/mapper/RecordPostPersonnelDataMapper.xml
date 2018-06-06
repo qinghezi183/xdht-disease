@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.RecordPostPersonnelDataMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.RecordPostPersonnelData">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_office_id" jdbcType="BIGINT" property="companyOfficeId" />
+    <result column="post_id" jdbcType="BIGINT" property="postId" />
+    <result column="per_shift" jdbcType="BIGINT" property="perShift" />
+    <result column="total_number" jdbcType="BIGINT" property="totalNumber" />
+    <result column="day_of_week" jdbcType="BIGINT" property="dayOfWeek" />
+    <result column="class_of_date" jdbcType="BIGINT" property="classOfDate" />
+    <result column="hour_of_class" jdbcType="BIGINT" property="hourOfClass" />
+  </resultMap>
+</mapper>
