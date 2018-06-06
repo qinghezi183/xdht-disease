@@ -33,15 +33,11 @@ public class SysRoleServiceImpl extends AbstractService<SysRole> implements SysR
         if (sysRoleRequest.getRoleName() != null){
         condition.createCriteria().andLike("roleName", "%"+sysRoleRequest.getRoleName()+"%");
         }
-        condition.setOrderByClause("id desc");
-//        SysRole  sysRole = new SysRole();
-//        sysRole.setRoleName(sysRoleRequest.getRoleName());
-//        Integer count = this.sysRoleMapper.selectCount(sysRole);
         PageHelper.startPage(sysRoleRequest.getPageNum(), sysRoleRequest.getPageSize());
-        List<SysRole> sysRoleList = this.sysRoleMapper.selectByCondition(condition);
+        List<SysRole> dataList = this.sysRoleMapper.selectByCondition(condition);
         PageResult<SysRole> pageList = new PageResult<SysRole>();
-        pageList.setDataList(sysRoleList);
-        pageList.setTotal(sysRoleList.size());
+        pageList.setDataList(dataList);
+        pageList.setTotal(dataList.size());
         return pageList;
     }
 

@@ -33,17 +33,11 @@ public class SysCompanyOfficeServiceImpl extends AbstractService<SysCompanyOffic
             if (sysCompanyOfficeRequest.getOfficeName() != null) {
                 condition.getOredCriteria().get(0).andLike("officeName","%"+sysCompanyOfficeRequest.getOfficeName()+"%");
             }
-            condition.setOrderByClause("id desc");
-//            SysCompanyOffice sysCompanyOffice = new SysCompanyOffice();
-//            sysCompanyOffice.setCompanyId(sysCompanyOfficeRequest.getCompanyId());
-//            sysCompanyOffice.setOfficeName(sysCompanyOffice.getOfficeName());
-//            Integer count = this.sysCompanyOfficeMapper.selectCount(sysCompanyOffice);
-//            System.out.println("============sbsbsb============:"+count);
             PageHelper.startPage(sysCompanyOfficeRequest.getPageNum(), sysCompanyOfficeRequest.getPageSize());
-            List<SysCompanyOffice> sysCompanyOfficeList = this.sysCompanyOfficeMapper.selectByCondition(condition);
+            List<SysCompanyOffice> dataList = this.sysCompanyOfficeMapper.selectByCondition(condition);
             PageResult<SysCompanyOffice> pageList = new  PageResult<SysCompanyOffice>();
-            pageList.setTotal(sysCompanyOfficeList.size());
-            pageList.setDataList(sysCompanyOfficeList);
+            pageList.setTotal(dataList.size());
+            pageList.setDataList(dataList);
             return pageList;
         }
 

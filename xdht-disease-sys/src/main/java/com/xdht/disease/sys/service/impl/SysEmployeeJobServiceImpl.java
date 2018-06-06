@@ -34,16 +34,11 @@ public class SysEmployeeJobServiceImpl extends AbstractService<SysEmployeeJob> i
             if (sysEmployeeIobRequest.getCompanyName() != null) {
                 condition.getOredCriteria().get(0).andLike("companyName","%"+sysEmployeeIobRequest.getCompanyName()+"%");
             }
-            condition.setOrderByClause("id desc");
-//            SysEmployeeJob sysEmployeeJob = new SysEmployeeJob();
-//            sysEmployeeJob.setEmployeeId(sysEmployeeIobRequest.getEmployeeId());
-//            sysEmployeeJob.setCompanyName(sysEmployeeIobRequest.getCompanyName());
-//            Integer count = this.sysEmployeeJobMapper.selectCount(sysEmployeeJob);
             PageHelper.startPage(sysEmployeeIobRequest.getPageNum(), sysEmployeeIobRequest.getPageSize());
-            List<SysEmployeeJob> sysEmployeeJobList = this.sysEmployeeJobMapper.selectByCondition(condition);
+            List<SysEmployeeJob> dataList = this.sysEmployeeJobMapper.selectByCondition(condition);
             PageResult<SysEmployeeJob> pageList = new PageResult<SysEmployeeJob>();
-            pageList.setTotal(sysEmployeeJobList.size());
-            pageList.setDataList(sysEmployeeJobList);
+            pageList.setTotal(dataList.size());
+            pageList.setDataList(dataList);
             return pageList;
         }
 

@@ -31,16 +31,11 @@ public class SysRoleMenuServiceImpl extends AbstractService<SysRoleMenu> impleme
             Condition condition = new Condition(SysRoleMenu.class);
             condition.createCriteria().andEqualTo("roleId", sysRoleMenuRequest.getRoleId())
                     .andEqualTo("menuId", sysRoleMenuRequest.getMenuId());
-            condition.setOrderByClause("id desc");
-//            SysRoleMenu sysRoleMenu = new SysRoleMenu();
-//            sysRoleMenu.setRoleId(sysRoleMenuRequest.getRoleId());
-//            sysRoleMenu.setMenuId(sysRoleMenuRequest.getMenuId());
-//            Integer count = this.sysRoleMenuMapper.selectCount(sysRoleMenu);
             PageHelper.startPage(sysRoleMenuRequest.getPageNum(), sysRoleMenuRequest.getPageSize());
-            List<SysRoleMenu> sysRoleMenuList = this.sysRoleMenuMapper.selectByCondition(condition);
+            List<SysRoleMenu> dataList = this.sysRoleMenuMapper.selectByCondition(condition);
             PageResult<SysRoleMenu> pageList = new PageResult<SysRoleMenu>();
-            pageList.setDataList(sysRoleMenuList);
-            pageList.setTotal(sysRoleMenuList.size());
+            pageList.setDataList(dataList);
+            pageList.setTotal(dataList.size());
             return pageList;
         }
         @Override

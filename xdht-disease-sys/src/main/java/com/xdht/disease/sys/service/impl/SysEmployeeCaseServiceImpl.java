@@ -34,16 +34,11 @@ public class SysEmployeeCaseServiceImpl extends AbstractService<SysEmployeeCase>
             if (sysEmployeeCaseRequest.getCaseName() != null) {
                 condition.getOredCriteria().get(0).andLike("caseName","%"+sysEmployeeCaseRequest.getCaseName()+"%");
             }
-            condition.setOrderByClause("id desc");
-//            SysEmployeeCase sysCompanyCase = new SysEmployeeCase();
-//            sysCompanyCase.setEmployeeId(sysEmployeeCaseRequest.getEmployeeId());
-//            sysCompanyCase.setCaseName(sysCompanyCase.getCaseName());
-//            Integer count = this.sysEmployeeCaseMapper.selectCount(sysCompanyCase);
             PageHelper.startPage(sysEmployeeCaseRequest.getPageNum(), sysEmployeeCaseRequest.getPageSize());
-            List<SysEmployeeCase> sysEmployeeCaseList = this.sysEmployeeCaseMapper.selectByCondition(condition);
+            List<SysEmployeeCase> dataList = this.sysEmployeeCaseMapper.selectByCondition(condition);
             PageResult<SysEmployeeCase> pageList = new PageResult<SysEmployeeCase>();
-            pageList.setTotal(sysEmployeeCaseList.size());
-            pageList.setDataList(sysEmployeeCaseList);
+            pageList.setTotal(dataList.size());
+            pageList.setDataList(dataList);
             return pageList;
         }
         @Override

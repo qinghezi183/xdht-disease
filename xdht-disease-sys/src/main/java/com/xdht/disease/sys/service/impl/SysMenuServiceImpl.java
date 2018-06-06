@@ -32,15 +32,11 @@ public class SysMenuServiceImpl extends AbstractService<SysMenu> implements SysM
             if (sysMenuRequest.getMenuName() != null) {
                 condition.createCriteria().andLike("menuName","%"+sysMenuRequest.getMenuName()+"%");
             }
-            condition.setOrderByClause("id desc");
-//            SysMenu sysMenu =  new SysMenu();
-//            sysMenu.setMenuName(sysMenuRequest.getMenuName());
-//            Integer count = this.sysMenuMapper.selectCount(sysMenu);
             PageHelper.startPage(sysMenuRequest.getPageNum(), sysMenuRequest.getPageSize());
-            List<SysMenu> sysMenuList = this.sysMenuMapper.selectByCondition(condition);
+            List<SysMenu> dataList = this.sysMenuMapper.selectByCondition(condition);
             PageResult<SysMenu> pageList = new PageResult<SysMenu>();
-            pageList.setDataList(sysMenuList);
-            pageList.setTotal(sysMenuList.size());
+            pageList.setDataList(dataList);
+            pageList.setTotal(dataList.size());
             return pageList;
         }
         @Override

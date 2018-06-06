@@ -31,15 +31,11 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
             if (sysUserRequest.getUserName() != null){
                 condition.createCriteria().andLike("userName", "%"+sysUserRequest.getUserName()+"%");
             }
-            condition.setOrderByClause("id desc");
-//            SysUser sysUser = new SysUser();
-//            sysUser.setUserName(sysUserRequest.getUserName());
-//            Integer count = this.sysUserMapper.selectCount(sysUser);
             PageHelper.startPage(sysUserRequest.getPageNum(), sysUserRequest.getPageSize());
-            List<SysUser> sysUserList = this.sysUserMapper.selectByCondition(condition);
+            List<SysUser> dataList = this.sysUserMapper.selectByCondition(condition);
             PageResult<SysUser> pageList = new PageResult<SysUser>();
-            pageList.setDataList(sysUserList);
-            pageList.setTotal(sysUserList.size());
+            pageList.setDataList(dataList);
+            pageList.setTotal(dataList.size());
             return pageList;
         }
 

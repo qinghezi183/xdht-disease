@@ -32,15 +32,11 @@ public class SysCompanyServiceImpl extends AbstractService<SysCompany> implement
             if (sysCompanyRequest.getCompanyName() != null){
                 condition.createCriteria().andLike("companyName","%"+sysCompanyRequest.getCompanyName()+"%");
             }
-            condition.setOrderByClause("id desc");
-//            SysCompany sysCompany = new SysCompany();
-//            sysCompany.setCompanyName(sysCompanyRequest.getCompanyName());
-//            Integer count = this.sysCompanyMapper.selectCount(sysCompany);
             PageHelper.startPage(sysCompanyRequest.getPageNum(), sysCompanyRequest.getPageSize());
-            List<SysCompany> sysCompanyList = this.sysCompanyMapper.selectByCondition(condition);
+            List<SysCompany> dataList = this.sysCompanyMapper.selectByCondition(condition);
             PageResult<SysCompany> pageList = new  PageResult<SysCompany>();
-            pageList.setTotal(sysCompanyList.size());
-            pageList.setDataList(sysCompanyList);
+            pageList.setTotal(dataList.size());
+            pageList.setDataList(dataList);
             return pageList;
         }
 

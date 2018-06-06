@@ -32,16 +32,11 @@ public class SysUserRoleServiceImpl extends AbstractService<SysUserRole> impleme
                 Condition condition = new Condition(SysUserRole.class);
                 condition.createCriteria().andEqualTo("roleId", sysUserRoleRequest.getRoleId())
                     .andEqualTo("userId", sysUserRoleRequest.getUserId());
-                condition.setOrderByClause("id desc");
-//                SysUserRole sysUserRole = new SysUserRole();
-//                sysUserRole.setRoleId(sysUserRoleRequest.getRoleId());
-//                sysUserRole.setUserId(sysUserRoleRequest.getUserId());
-//                Integer count = this.sysUserRoleMapper.selectCount(sysUserRole);
                 PageHelper.startPage(sysUserRoleRequest.getPageNum(), sysUserRoleRequest.getPageSize());
-                List<SysUserRole> sysUserRoleList = this.sysUserRoleMapper.selectByCondition(condition);
+                List<SysUserRole> dataList = this.sysUserRoleMapper.selectByCondition(condition);
                 PageResult<SysUserRole> pageList = new PageResult<SysUserRole>();
-                pageList.setDataList(sysUserRoleList);
-                pageList.setTotal(sysUserRoleList.size());
+                pageList.setDataList(dataList);
+                pageList.setTotal(dataList.size());
                 return pageList;
 
         }

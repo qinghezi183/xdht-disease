@@ -41,20 +41,11 @@ public class SysEmployeeServiceImpl extends AbstractService<SysEmployee> impleme
             if(sysEmployeeRequest.getEmpNative() != null){
                 condition.getOredCriteria().get(0).andLike("empNative",sysEmployeeRequest.getEmpNative());
             }
-            condition.setOrderByClause("id desc");
-//            SysEmployee sysCompany = new SysEmployee();
-//            sysCompany.setOfficeId(sysEmployeeRequest.getOfficeId());
-//            sysCompany.setEmpSex(sysEmployeeRequest.getEmpSex());
-//            sysCompany.setEmpMarriage(sysEmployeeRequest.getEmpMarriage());
-//            sysCompany.setEmpEducation(sysEmployeeRequest.getEmpEducation());
-//            sysCompany.setEmpName(sysEmployeeRequest.getEmpName());
-//            sysCompany.setEmpNative(sysEmployeeRequest.getEmpNative());
-//            Integer count = this.sysEmployeeMapper.selectCount(sysCompany);
             PageHelper.startPage(sysEmployeeRequest.getPageNum(), sysEmployeeRequest.getPageSize());
-            List<SysEmployee> sysEmployeeList = this.sysEmployeeMapper.selectByCondition(condition);
+            List<SysEmployee> dataList = this.sysEmployeeMapper.selectByCondition(condition);
             PageResult<SysEmployee> pageList = new PageResult<SysEmployee>();
-            pageList.setDataList(sysEmployeeList);
-            pageList.setTotal(sysEmployeeList.size());
+            pageList.setDataList(dataList);
+            pageList.setTotal(dataList.size());
             return pageList;
         }
 

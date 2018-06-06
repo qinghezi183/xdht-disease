@@ -36,16 +36,11 @@ public class SysEmployeeDiseaseServiceImpl extends AbstractService<SysEmployeeDi
             if (sysEmployeeDiseaseRequest.getDiseaseName() != null) {
                 condition.getOredCriteria().get(0).andLike("diseaseName","%"+sysEmployeeDiseaseRequest.getDiseaseName()+"%");
             }
-            condition.setOrderByClause("id desc");
-//            SysEmployeeDisease sysEmployeeDisease = new SysEmployeeDisease();
-//            sysEmployeeDisease.setEmployeeId(sysEmployeeDiseaseRequest.getEmployeeId());
-//            sysEmployeeDisease.setDiseaseName(sysEmployeeDiseaseRequest.getDiseaseName());
-//            Integer count = this.sysEmployeeDiseaseMapper.selectCount(sysEmployeeDisease);
             PageHelper.startPage(sysEmployeeDiseaseRequest.getPageNum(), sysEmployeeDiseaseRequest.getPageSize());
-            List<SysEmployeeDisease> sysEmployeeDiseaseList = this.sysEmployeeDiseaseMapper.selectByCondition(condition);
+            List<SysEmployeeDisease> dataList = this.sysEmployeeDiseaseMapper.selectByCondition(condition);
             PageResult<SysEmployeeDisease> pageList = new PageResult<SysEmployeeDisease>();
-            pageList.setTotal(sysEmployeeDiseaseList.size());
-            pageList.setDataList(sysEmployeeDiseaseList);
+            pageList.setTotal(dataList.size());
+            pageList.setDataList(dataList);
             return pageList;
         }
         @Override
