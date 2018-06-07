@@ -7,7 +7,6 @@ import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.RecordEquipmentData;
 import com.xdht.disease.sys.service.RecordEquipmentDataService;
 import com.xdht.disease.sys.vo.request.RecordEquipmentDataRequest;
-import com.xdht.disease.sys.vo.request.RecordEquipmentRequest;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;

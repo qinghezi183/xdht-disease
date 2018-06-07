@@ -1,14 +1,10 @@
 package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
-import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
-import com.xdht.disease.sys.model.RecordHealthCareData;
 import com.xdht.disease.sys.model.RecordHealthCareProject;
-import com.xdht.disease.sys.service.RecordHealthCareDataService;
 import com.xdht.disease.sys.service.RecordHealthCareProjectService;
-import com.xdht.disease.sys.vo.request.RecordHealthCareDataRequest;
 import com.xdht.disease.sys.vo.request.RecordHealthCareProjectRequest;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j;
