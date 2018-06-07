@@ -1,4 +1,5 @@
 package com.xdht.disease.sys.service;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.model.SysEmployeeCase;
 import com.xdht.disease.common.core.Service;
 import com.xdht.disease.sys.vo.request.SysEmployeeCaseRequest;
@@ -17,8 +18,14 @@ public interface SysEmployeeCaseService extends Service<SysEmployeeCase> {
      * @param sysEmployeeCaseRequest 查询条件
      * @return 返回结果
      */
-    public List<SysEmployeeCase> querySysEmpCaseListPage(SysEmployeeCaseRequest sysEmployeeCaseRequest);
+    public PageResult<SysEmployeeCase> querySysEmpCasePage(SysEmployeeCaseRequest sysEmployeeCaseRequest);
 
+    /**
+     * 查询员工疾病列表
+     * @param sysEmployeeCase 查询条件
+     * @return 返回结果
+     */
+    public List<SysEmployeeCase> querySysEmpCaseList(SysEmployeeCase sysEmployeeCase);
     /**
      * 添加员工疾病
      * @param sysEmployeeCase 员工疾病实体
@@ -39,4 +46,6 @@ public interface SysEmployeeCaseService extends Service<SysEmployeeCase> {
      * @return 返回结果
      */
     public SysEmployeeCaseResponse updateEmployeeCase(SysEmployeeCase sysEmployeeCase);
+
+
 }

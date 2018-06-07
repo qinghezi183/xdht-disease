@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.RecordPresentSituationDataMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.RecordPresentSituationData">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pre_evaluation_id" jdbcType="BIGINT" property="preEvaluationId" />
+    <result column="pre_evaluation_project_id" jdbcType="BIGINT" property="preEvaluationProjectId" />
+    <result column="survey_results" jdbcType="VARCHAR" property="surveyResults" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+</mapper>

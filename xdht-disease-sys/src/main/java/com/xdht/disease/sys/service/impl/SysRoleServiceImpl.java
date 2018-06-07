@@ -2,7 +2,9 @@ package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysRoleMapper;
+import com.xdht.disease.sys.model.SysMenu;
 import com.xdht.disease.sys.model.SysRole;
 import com.xdht.disease.sys.service.SysRoleService;
 import com.xdht.disease.sys.vo.request.SysRoleRequest;
@@ -26,13 +28,26 @@ public class SysRoleServiceImpl extends AbstractService<SysRole> implements SysR
     private SysRoleMapper sysRoleMapper;
 
     @Override
-    public List<SysRole> querySysRoleList(SysRoleRequest sysRoleRequest) {
+    public PageResult<SysRole> querySysRolePage(SysRoleRequest sysRoleRequest) {
         Condition condition = new Condition(SysRole.class);
         if (sysRoleRequest.getRoleName() != null){
         condition.createCriteria().andLike("roleName", "%"+sysRoleRequest.getRoleName()+"%");
         }
-        condition.setOrderByClause("id desc");
         PageHelper.startPage(sysRoleRequest.getPageNum(), sysRoleRequest.getPageSize());
+        List<SysRole> dataList = this.sysRoleMapper.selectByCondition(condition);
+        PageResult<SysRole> pageList = new PageResult<SysRole>();
+        pageList.setDataList(dataList);
+        pageList.setTotal(dataList.size());
+        return pageList;
+    }
+
+    @Override
+    public List<SysRole> querySysRoleList(SysRole sysRole) {
+        Condition condition = new Condition(SysRole.class);
+        if (sysRole.getRoleName() != null){
+        condition.createCriteria().andLike("roleName", "%"+sysRole.getRoleName()+"%");
+        }
+        condition.setOrderByClause("id desc");
         List<SysRole> sysRoleList = this.sysRoleMapper.selectByCondition(condition);
         return sysRoleList;
     }

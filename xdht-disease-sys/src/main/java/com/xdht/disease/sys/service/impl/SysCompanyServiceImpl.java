@@ -2,6 +2,7 @@ package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysCompanyMapper;
 import com.xdht.disease.sys.model.SysCompany;
 import com.xdht.disease.sys.service.SysCompanyService;
@@ -26,17 +27,25 @@ public class SysCompanyServiceImpl extends AbstractService<SysCompany> implement
     private SysCompanyMapper sysCompanyMapper;
 
         @Override
-        public List<SysCompany> querySysCompanyListPage(SysCompanyRequest sysCompanyRequest) {
+        public PageResult<SysCompany> querySysCompanyListPage(SysCompanyRequest sysCompanyRequest) {
             Condition condition = new Condition(SysCompany.class);
             if (sysCompanyRequest.getCompanyName() != null){
                 condition.createCriteria().andLike("companyName","%"+sysCompanyRequest.getCompanyName()+"%");
             }
-            condition.setOrderByClause("id desc");
-            SysCompany sysCompany = new SysCompany();
-            sysCompany.setCompanyName(sysCompanyRequest.getCompanyName());
-            Integer count = this.selectCount(sysCompany);
-            System.out.println("count:"+count);
             PageHelper.startPage(sysCompanyRequest.getPageNum(), sysCompanyRequest.getPageSize());
+            List<SysCompany> dataList = this.sysCompanyMapper.selectByCondition(condition);
+            PageResult<SysCompany> pageList = new  PageResult<SysCompany>();
+            pageList.setTotal(dataList.size());
+            pageList.setDataList(dataList);
+            return pageList;
+        }
+
+        @Override
+        public List<SysCompany> querySysCompanyList(SysCompany sysCompany) {
+            Condition condition = new Condition(SysCompany.class);
+            if (sysCompany.getCompanyName() != null){
+                condition.createCriteria().andLike("companyName","%"+sysCompany.getCompanyName()+"%");
+            }
             List<SysCompany> sysCompanyList = this.selectByCondition(condition);
             return sysCompanyList;
         }
@@ -66,5 +75,7 @@ public class SysCompanyServiceImpl extends AbstractService<SysCompany> implement
             sysCompanyResponse.setCompanyName(sysCompany.getCompanyName());
             return sysCompanyResponse;
         }
+
+
 
 }

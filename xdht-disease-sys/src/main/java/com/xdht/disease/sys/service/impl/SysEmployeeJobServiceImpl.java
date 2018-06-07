@@ -2,6 +2,7 @@ package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysEmployeeJobMapper;
 import com.xdht.disease.sys.model.SysEmployeeJob;
 import com.xdht.disease.sys.service.SysEmployeeJobService;
@@ -26,15 +27,30 @@ public class SysEmployeeJobServiceImpl extends AbstractService<SysEmployeeJob> i
     private SysEmployeeJobMapper sysEmployeeJobMapper;
 
         @Override
-        public List<SysEmployeeJob> querySysEmpJobListPage(SysEmployeeJobRequest sysEmployeeIobRequest) {
+        public PageResult<SysEmployeeJob> querySysEmpJobPage(SysEmployeeJobRequest sysEmployeeIobRequest) {
             Condition condition = new Condition(SysEmployeeJob.class);
             condition.createCriteria()
                     .andEqualTo("employeeId", sysEmployeeIobRequest.getEmployeeId());
             if (sysEmployeeIobRequest.getCompanyName() != null) {
                 condition.getOredCriteria().get(0).andLike("companyName","%"+sysEmployeeIobRequest.getCompanyName()+"%");
             }
-            condition.setOrderByClause("id desc");
             PageHelper.startPage(sysEmployeeIobRequest.getPageNum(), sysEmployeeIobRequest.getPageSize());
+            List<SysEmployeeJob> dataList = this.sysEmployeeJobMapper.selectByCondition(condition);
+            PageResult<SysEmployeeJob> pageList = new PageResult<SysEmployeeJob>();
+            pageList.setTotal(dataList.size());
+            pageList.setDataList(dataList);
+            return pageList;
+        }
+
+        @Override
+        public List<SysEmployeeJob> querySysEmpJobList(SysEmployeeJob sysEmployeeIob) {
+            Condition condition = new Condition(SysEmployeeJob.class);
+            condition.createCriteria()
+                    .andEqualTo("employeeId", sysEmployeeIob.getEmployeeId());
+            if (sysEmployeeIob.getCompanyName() != null) {
+                condition.getOredCriteria().get(0).andLike("companyName","%"+sysEmployeeIob.getCompanyName()+"%");
+            }
+            condition.setOrderByClause("id desc");
             List<SysEmployeeJob> sysEmployeeJobList = this.sysEmployeeJobMapper.selectByCondition(condition);
             return sysEmployeeJobList;
         }
@@ -64,5 +80,7 @@ public class SysEmployeeJobServiceImpl extends AbstractService<SysEmployeeJob> i
             sysEmployeeJobResponse.setCompanyName(sysEmployeeJob.getCompanyName());
             return sysEmployeeJobResponse;
         }
+
+
 
 }

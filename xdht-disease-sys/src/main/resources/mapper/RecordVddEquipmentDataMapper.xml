@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.RecordVddEquipmentDataMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.RecordVddEquipmentData">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="office_id" jdbcType="BIGINT" property="officeId" />
+    <result column="post_id" jdbcType="BIGINT" property="postId" />
+    <result column="work_place" jdbcType="VARCHAR" property="workPlace" />
+    <result column="vdd_equipment_name" jdbcType="VARCHAR" property="vddEquipmentName" />
+    <result column="poison_or_dust_name" jdbcType="VARCHAR" property="poisonOrDustName" />
+    <result column="number" jdbcType="BIGINT" property="number" />
+    <result column="operation_and_maintenance" jdbcType="VARCHAR" property="operationAndMaintenance" />
+  </resultMap>
+</mapper>

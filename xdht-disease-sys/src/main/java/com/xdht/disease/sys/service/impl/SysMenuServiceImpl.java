@@ -2,6 +2,7 @@ package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysMenuMapper;
 import com.xdht.disease.sys.model.SysMenu;
 import com.xdht.disease.sys.service.SysMenuService;
@@ -26,14 +27,26 @@ public class SysMenuServiceImpl extends AbstractService<SysMenu> implements SysM
     private SysMenuMapper sysMenuMapper;
 
         @Override
-        public List<SysMenu> querySysMenuList(SysMenuRequest sysMenuRequest) {
+        public PageResult<SysMenu> querySysMenuPage(SysMenuRequest sysMenuRequest) {
             Condition condition = new Condition(SysMenu.class);
-
             if (sysMenuRequest.getMenuName() != null) {
                 condition.createCriteria().andLike("menuName","%"+sysMenuRequest.getMenuName()+"%");
             }
-            condition.setOrderByClause("id desc");
             PageHelper.startPage(sysMenuRequest.getPageNum(), sysMenuRequest.getPageSize());
+            List<SysMenu> dataList = this.sysMenuMapper.selectByCondition(condition);
+            PageResult<SysMenu> pageList = new PageResult<SysMenu>();
+            pageList.setDataList(dataList);
+            pageList.setTotal(dataList.size());
+            return pageList;
+        }
+        @Override
+        public List<SysMenu> querySysMenuList(SysMenu sysMenu) {
+            Condition condition = new Condition(SysMenu.class);
+
+            if (sysMenu.getMenuName() != null) {
+                condition.createCriteria().andLike("menuName","%"+sysMenu.getMenuName()+"%");
+            }
+            condition.setOrderByClause("id desc");
             List<SysMenu> sysMenuList = this.sysMenuMapper.selectByCondition(condition);
             return sysMenuList;
         }

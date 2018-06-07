@@ -1,6 +1,7 @@
 package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysRole;
@@ -32,10 +33,15 @@ public class SysRoleMenuController {
     @Autowired
     private SysRoleMenuService sysRoleMenuService;
 
-    @RequestMapping(value = "/roleMenus", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/roleMenuPage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "分页查询角色菜单列表")
-    public ResponseEntity<Result<List<SysRoleMenu>>> createToken(@CurrentUser User user, @RequestBody SysRoleMenuRequest sysRoleMenuRequest) {
-        return new ResponseEntity<>(Result.ok(sysRoleMenuService.querySysRoleMenuList(sysRoleMenuRequest)), HttpStatus.OK);
+    public ResponseEntity<Result<PageResult<SysRoleMenu>>> roleMenuPage(@CurrentUser User user, @RequestBody SysRoleMenuRequest sysRoleMenuRequest) {
+        return new ResponseEntity<>(Result.ok(sysRoleMenuService.querySysRoleMenuPage(sysRoleMenuRequest)), HttpStatus.OK);
+    }
+    @RequestMapping(value = "/roleMenuList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询角色菜单列表")
+    public ResponseEntity<Result<List<SysRoleMenu>>> roleMenuList(@CurrentUser User user, @RequestBody SysRoleMenu sysRoleMenu) {
+        return new ResponseEntity<>(Result.ok(sysRoleMenuService.querySysRoleMenuList(sysRoleMenu)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

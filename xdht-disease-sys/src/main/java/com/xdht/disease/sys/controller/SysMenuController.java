@@ -28,10 +28,15 @@ public class SysMenuController {
     @Autowired
     private SysMenuService sysMenuService;
 
-    @RequestMapping(value = "/menus", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/menuPage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "分页查询菜单列表")
-    public ResponseEntity<Result<List<SysMenu>>> createToken(@CurrentUser User user, @RequestBody SysMenuRequest sysMenuRequest) {
-        return new ResponseEntity<>(Result.ok(sysMenuService.querySysMenuList(sysMenuRequest)), HttpStatus.OK);
+    public ResponseEntity<Result<List<SysMenu>>> menuPage(@CurrentUser User user, @RequestBody SysMenuRequest sysMenuRequest) {
+        return new ResponseEntity<>(Result.ok(sysMenuService.querySysMenuPage(sysMenuRequest)), HttpStatus.OK);
+    }
+    @RequestMapping(value = "/menusList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询菜单列表")
+    public ResponseEntity<Result<List<SysMenu>>> menusList(@CurrentUser User user, @RequestBody SysMenu sysMenu) {
+        return new ResponseEntity<>(Result.ok(sysMenuService.querySysMenuList(sysMenu)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

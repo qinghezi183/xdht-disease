@@ -1,4 +1,5 @@
 package com.xdht.disease.sys.service;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.model.SysRole;
 import com.xdht.disease.common.core.Service;
 import com.xdht.disease.sys.vo.request.SysRoleRequest;
@@ -17,7 +18,14 @@ public interface SysRoleService extends Service<SysRole> {
      * @param sysRoleRequest 查询条件
      * @return 返回结果
      */
-    public List<SysRole> querySysRoleList(SysRoleRequest sysRoleRequest);
+    public PageResult<SysRole> querySysRolePage(SysRoleRequest sysRoleRequest);
+
+    /**
+     * 查询角色列表
+     * @param sysRole 查询条件
+     * @return 返回结果
+     */
+    public List<SysRole> querySysRoleList(SysRole sysRole);
 
     /**
      * 添加角色
@@ -39,4 +47,6 @@ public interface SysRoleService extends Service<SysRole> {
      * @return 返回结果
      */
     public SysRoleResponse updateRole(SysRole sysRole);
+
+
 }

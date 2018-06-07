@@ -2,6 +2,7 @@ package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysEmployeeCaseMapper;
 import com.xdht.disease.sys.model.SysEmployeeCase;
 import com.xdht.disease.sys.service.SysEmployeeCaseService;
@@ -26,15 +27,28 @@ public class SysEmployeeCaseServiceImpl extends AbstractService<SysEmployeeCase>
     private SysEmployeeCaseMapper sysEmployeeCaseMapper;
 
         @Override
-        public List<SysEmployeeCase> querySysEmpCaseListPage(SysEmployeeCaseRequest sysEmployeeCaseRequest) {
+        public PageResult<SysEmployeeCase> querySysEmpCasePage(SysEmployeeCaseRequest sysEmployeeCaseRequest) {
             Condition condition = new Condition(SysEmployeeCase.class);
             condition.createCriteria()
                     .andEqualTo("employeeId", sysEmployeeCaseRequest.getEmployeeId());
             if (sysEmployeeCaseRequest.getCaseName() != null) {
                 condition.getOredCriteria().get(0).andLike("caseName","%"+sysEmployeeCaseRequest.getCaseName()+"%");
             }
-            condition.setOrderByClause("id desc");
             PageHelper.startPage(sysEmployeeCaseRequest.getPageNum(), sysEmployeeCaseRequest.getPageSize());
+            List<SysEmployeeCase> dataList = this.sysEmployeeCaseMapper.selectByCondition(condition);
+            PageResult<SysEmployeeCase> pageList = new PageResult<SysEmployeeCase>();
+            pageList.setTotal(dataList.size());
+            pageList.setDataList(dataList);
+            return pageList;
+        }
+        @Override
+        public List<SysEmployeeCase>  querySysEmpCaseList(SysEmployeeCase sysEmployeeCase) {
+            Condition condition = new Condition(SysEmployeeCase.class);
+            condition.createCriteria()
+                    .andEqualTo("employeeId", sysEmployeeCase.getEmployeeId());
+            if (sysEmployeeCase.getCaseName() != null) {
+                condition.getOredCriteria().get(0).andLike("caseName","%"+sysEmployeeCase.getCaseName()+"%");
+            }
             List<SysEmployeeCase> sysEmployeeCaseList = this.sysEmployeeCaseMapper.selectByCondition(condition);
             return sysEmployeeCaseList;
         }
@@ -64,6 +78,8 @@ public class SysEmployeeCaseServiceImpl extends AbstractService<SysEmployeeCase>
             sysEmployeeCaseResponse.setCaseName(sysEmployeeCase.getCaseName());
             return sysEmployeeCaseResponse;
         }
+
+
 
 }
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.RecordCompanySummaryMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.RecordCompanySummary">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="inspection_date" jdbcType="DATE" property="inspectionDate" />
+    <result column="inspection_agency" jdbcType="VARCHAR" property="inspectionAgency" />
+    <result column="physical_examination_type" jdbcType="VARCHAR" property="physicalExaminationType" />
+    <result column="inspected_number" jdbcType="BIGINT" property="inspectedNumber" />
+    <result column="actual_inspectd_number" jdbcType="BIGINT" property="actualInspectdNumber" />
+    <result column="no_abnormality" jdbcType="BIGINT" property="noAbnormality" />
+    <result column="review_number" jdbcType="BIGINT" property="reviewNumber" />
+    <result column="doubtful_number" jdbcType="BIGINT" property="doubtfulNumber" />
+    <result column="taboo_number" jdbcType="BIGINT" property="tabooNumber" />
+    <result column="other_diseases_number" jdbcType="BIGINT" property="otherDiseasesNumber" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+</mapper>

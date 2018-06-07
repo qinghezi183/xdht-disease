@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sys.dao.RecordHealthCareDataMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.sys.model.RecordHealthCareData">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="health_care_id" jdbcType="BIGINT" property="healthCareId" />
+    <result column="health_care_project_id" jdbcType="BIGINT" property="healthCareProjectId" />
+    <result column="survey_results" jdbcType="VARCHAR" property="surveyResults" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+</mapper>

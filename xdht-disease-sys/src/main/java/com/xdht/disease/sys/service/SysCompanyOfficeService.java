@@ -1,4 +1,5 @@
 package com.xdht.disease.sys.service;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.model.SysCompanyOffice;
 import com.xdht.disease.common.core.Service;
 import com.xdht.disease.sys.vo.request.SysCompanyOfficeRequest;
@@ -17,8 +18,14 @@ public interface SysCompanyOfficeService extends Service<SysCompanyOffice> {
      * @param sysCompanyOfficeRequest 查询条件
      * @return 返回结果
      */
-    public List<SysCompanyOffice> querySysCompanyOfficeListPage(SysCompanyOfficeRequest sysCompanyOfficeRequest);
+    public PageResult<SysCompanyOffice> querySysCompanyOfficePage(SysCompanyOfficeRequest sysCompanyOfficeRequest);
 
+    /**
+     * 查询公司列表
+     * @param sysCompanyOffice 查询条件
+     * @return 返回结果
+     */
+    public List<SysCompanyOffice> querySysCompanyOfficeList(SysCompanyOffice sysCompanyOffice);
     /**
      * 添加单位部门
      * @param sysCompanyOffice 单位部门实体
@@ -39,4 +46,6 @@ public interface SysCompanyOfficeService extends Service<SysCompanyOffice> {
      * @return 返回结果
      */
     public SysCompanyOfficeResponse updateCompanyOffice(SysCompanyOffice sysCompanyOffice);
+
+
 }

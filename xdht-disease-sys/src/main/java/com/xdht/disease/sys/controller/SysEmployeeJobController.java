@@ -1,6 +1,7 @@
 package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysEmployeeJob;
@@ -28,14 +29,20 @@ public class SysEmployeeJobController {
     @Autowired
     private SysEmployeeJobService sysEmployeeJobService;
 
-    @RequestMapping(value = "/employeeJobs", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询员工工作列表分页")
+    @RequestMapping(value = "/employeeJobPage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "分页查询员工工作列表")
 //    @Authorization
 //    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
 //    })
-    public ResponseEntity<Result<List<SysEmployeeJob>>> createToken(@CurrentUser User user, @RequestBody SysEmployeeJobRequest sysEmployeeIobRequest) {
-        return new ResponseEntity<>(Result.ok(sysEmployeeJobService.querySysEmpJobListPage(sysEmployeeIobRequest)), HttpStatus.OK);
+    public ResponseEntity<Result<PageResult<SysEmployeeJob>>> employeeJobPage(@CurrentUser User user, @RequestBody SysEmployeeJobRequest sysEmployeeIobRequest) {
+        return new ResponseEntity<>(Result.ok(sysEmployeeJobService.querySysEmpJobPage(sysEmployeeIobRequest)), HttpStatus.OK);
+
+    }
+    @RequestMapping(value = "/employeeJobList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询员工工作列表")
+    public ResponseEntity<Result<List<SysEmployeeJob>>> employeeJobList(@CurrentUser User user, @RequestBody SysEmployeeJob sysEmployeeIob) {
+        return new ResponseEntity<>(Result.ok(sysEmployeeJobService.querySysEmpJobList(sysEmployeeIob)), HttpStatus.OK);
 
     }
 

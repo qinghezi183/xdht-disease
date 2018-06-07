@@ -1,6 +1,7 @@
 package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysCompany;
@@ -28,15 +29,15 @@ public class SysCompanyController {
     @Autowired
     private SysCompanyService sysCompanyService;
 
-    @RequestMapping(value = "/companys", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "查询单位列表分页")
-//    @Authorization
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
-//    })
-    public ResponseEntity<Result<List<SysCompany>>> createToken(@CurrentUser User user, @RequestBody SysCompanyRequest sysCompanyRequest) {
+    @RequestMapping(value = "/companyPage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "分页查询单位列表")
+    public ResponseEntity<Result<PageResult<SysCompany>>> companyPage(@CurrentUser User user, @RequestBody SysCompanyRequest sysCompanyRequest) {
         return new ResponseEntity<>(Result.ok(sysCompanyService.querySysCompanyListPage(sysCompanyRequest)), HttpStatus.OK);
-
+    }
+    @RequestMapping(value = "/companyList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "查询单位列表")
+    public  ResponseEntity<Result<List<SysCompany>>> companyList(@CurrentUser User user, @RequestBody SysCompany sysCompany) {
+        return new ResponseEntity<>(Result.ok(sysCompanyService.querySysCompanyList(sysCompany)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

@@ -2,6 +2,7 @@ package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
+import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysCompanyOfficeMapper;
 import com.xdht.disease.sys.model.SysCompanyOffice;
 import com.xdht.disease.sys.service.SysCompanyOfficeService;
@@ -26,14 +27,27 @@ public class SysCompanyOfficeServiceImpl extends AbstractService<SysCompanyOffic
     private SysCompanyOfficeMapper sysCompanyOfficeMapper;
 
         @Override
-        public List<SysCompanyOffice> querySysCompanyOfficeListPage(SysCompanyOfficeRequest sysCompanyOfficeRequest) {
+        public PageResult<SysCompanyOffice> querySysCompanyOfficePage(SysCompanyOfficeRequest sysCompanyOfficeRequest) {
             Condition condition = new Condition(SysCompanyOffice.class);
             condition.createCriteria() .andEqualTo("companyId", sysCompanyOfficeRequest.getCompanyId());
             if (sysCompanyOfficeRequest.getOfficeName() != null) {
                 condition.getOredCriteria().get(0).andLike("officeName","%"+sysCompanyOfficeRequest.getOfficeName()+"%");
             }
-            condition.setOrderByClause("id desc");
             PageHelper.startPage(sysCompanyOfficeRequest.getPageNum(), sysCompanyOfficeRequest.getPageSize());
+            List<SysCompanyOffice> dataList = this.sysCompanyOfficeMapper.selectByCondition(condition);
+            PageResult<SysCompanyOffice> pageList = new  PageResult<SysCompanyOffice>();
+            pageList.setTotal(dataList.size());
+            pageList.setDataList(dataList);
+            return pageList;
+        }
+
+        @Override
+        public List<SysCompanyOffice> querySysCompanyOfficeList(SysCompanyOffice sysCompanyOffice) {
+            Condition condition = new Condition(SysCompanyOffice.class);
+            condition.createCriteria() .andEqualTo("companyId", sysCompanyOffice.getCompanyId());
+            if (sysCompanyOffice.getOfficeName() != null) {
+                condition.getOredCriteria().get(0).andLike("officeName","%"+sysCompanyOffice.getOfficeName()+"%");
+            }
             List<SysCompanyOffice> sysCompanyOfficeList = this.sysCompanyOfficeMapper.selectByCondition(condition);
             return sysCompanyOfficeList;
         }
@@ -63,5 +77,7 @@ public class SysCompanyOfficeServiceImpl extends AbstractService<SysCompanyOffic
             sysCompanyOfficeResponse.setOfficeName(sysCompanyOffice.getOfficeName());
             return sysCompanyOfficeResponse;
         }
+
+
 
 }
