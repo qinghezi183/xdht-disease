@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
 import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysRoleMapper;
-import com.xdht.disease.sys.model.SysMenu;
 import com.xdht.disease.sys.model.SysRole;
 import com.xdht.disease.sys.service.SysRoleService;
 import com.xdht.disease.sys.vo.request.SysRoleRequest;

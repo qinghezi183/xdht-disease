@@ -1,8 +1,8 @@
 package com.xdht.disease.sys.service;
-import com.github.pagehelper.Page;
+
 import com.xdht.disease.common.core.PageResult;
-import com.xdht.disease.sys.model.RecordTemperatureProtectionFacilities;
 import com.xdht.disease.common.core.Service;
+import com.xdht.disease.sys.model.RecordTemperatureProtectionFacilities;
 import com.xdht.disease.sys.vo.request.RecordTemperatureProtectionFacilitiesRequest;
 
 import java.util.List;
