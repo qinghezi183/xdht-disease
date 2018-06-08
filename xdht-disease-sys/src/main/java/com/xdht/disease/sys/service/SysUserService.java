@@ -2,7 +2,9 @@ package com.xdht.disease.sys.service;
 import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.model.SysUser;
 import com.xdht.disease.common.core.Service;
+import com.xdht.disease.sys.vo.request.LoginRequest;
 import com.xdht.disease.sys.vo.request.SysUserRequest;
+import com.xdht.disease.sys.vo.response.LoginResponse;
 import com.xdht.disease.sys.vo.response.SysUserResponse;
 
 import java.util.List;
@@ -12,6 +14,13 @@ import java.util.List;
  * Created by lzf on 2018/05/31.
  */
 public interface SysUserService extends Service<SysUser> {
+
+    /**
+     * 用户登录
+     * @param loginRequest 登录信息
+     * @return 返回结果
+     */
+    LoginResponse createToken(LoginRequest loginRequest);
 
     /**
      * 分页查询用户

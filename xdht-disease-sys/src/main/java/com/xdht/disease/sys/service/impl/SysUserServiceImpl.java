@@ -1,10 +1,15 @@
 package com.xdht.disease.sys.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.xdht.disease.common.authorization.manager.TokenManager;
 import com.xdht.disease.common.core.PageResult;
+import com.xdht.disease.common.model.TokenModel;
+import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.dao.SysUserMapper;
 import com.xdht.disease.sys.model.SysUser;
 import com.xdht.disease.sys.service.SysUserService;
+import com.xdht.disease.sys.vo.request.LoginRequest;
+import com.xdht.disease.sys.vo.response.LoginResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.xdht.disease.common.core.AbstractService;
@@ -12,6 +17,8 @@ import com.xdht.disease.sys.vo.request.SysUserRequest;
 import com.xdht.disease.sys.vo.response.SysUserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Condition;
+
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -25,7 +32,27 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
         @Autowired
         private SysUserMapper sysUserMapper;
 
-        @Override
+        @Resource(name = "ehcacheTokenManager")
+        private TokenManager tokenManager;
+
+    @Override
+    public LoginResponse createToken(LoginRequest loginRequest) {
+        SysUser sysUser = new SysUser();
+        sysUser.setLoginCode(loginRequest.getLoginCode());
+        sysUser.setPassword(loginRequest.getPassword());
+        sysUser = this.sysUserMapper.selectOne(sysUser);
+        User user = new User();
+        user.setName(sysUser.getUserName());
+        user.setId(sysUser.getId());
+        TokenModel tokenModel = this.tokenManager.createToken(user);
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setToken(tokenModel.getToken());
+        loginResponse.setUserName(sysUser.getUserName());
+        loginResponse.setStatus("0");
+        return loginResponse;
+    }
+
+    @Override
         public PageResult<SysUser> querySysUserPage(SysUserRequest sysUserRequest) {
             Condition condition = new Condition(SysUser.class);
             if (sysUserRequest.getUserName() != null){

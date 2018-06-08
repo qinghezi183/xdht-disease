@@ -9,7 +9,10 @@ import lombok.Data;
 @Data
 public class LoginRequest {
 
-    @ApiModelProperty(value = "用户id")
-    private Long userId;
+    @ApiModelProperty(value = "登录名")
+    private String loginCode;
+
+    @ApiModelProperty(value = "密码")
+    private String password;
 
 }
