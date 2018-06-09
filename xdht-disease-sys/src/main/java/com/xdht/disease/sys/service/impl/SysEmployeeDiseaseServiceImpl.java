@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.xdht.disease.common.core.AbstractService;
 import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.SysEmployeeDiseaseMapper;
-import com.xdht.disease.sys.model.SysEmployeeCase;
 import com.xdht.disease.sys.model.SysEmployeeDisease;
 import com.xdht.disease.sys.service.SysEmployeeDiseaseService;
 import com.xdht.disease.sys.vo.request.SysEmployeeDiseaseRequest;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Condition;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 

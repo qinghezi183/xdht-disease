@@ -1,8 +1,8 @@
 package com.xdht.disease.sys.service;
+
 import com.xdht.disease.common.core.PageResult;
-import com.xdht.disease.sys.model.SysEmployeeDisease;
-import com.xdht.disease.sys.model.SysEmployeeJob;
 import com.xdht.disease.common.core.Service;
+import com.xdht.disease.sys.model.SysEmployeeJob;
 import com.xdht.disease.sys.vo.request.SysEmployeeJobRequest;
 import com.xdht.disease.sys.vo.response.SysEmployeeJobResponse;
 
