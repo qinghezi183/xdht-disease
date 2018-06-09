@@ -37,18 +37,22 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
 
     @Override
     public LoginResponse createToken(LoginRequest loginRequest) {
+        LoginResponse loginResponse = new LoginResponse();
         SysUser sysUser = new SysUser();
         sysUser.setLoginCode(loginRequest.getLoginCode());
         sysUser.setPassword(loginRequest.getPassword());
         sysUser = this.sysUserMapper.selectOne(sysUser);
-        User user = new User();
-        user.setName(sysUser.getUserName());
-        user.setId(sysUser.getId());
-        TokenModel tokenModel = this.tokenManager.createToken(user);
-        LoginResponse loginResponse = new LoginResponse();
-        loginResponse.setToken(tokenModel.getToken());
-        loginResponse.setUserName(sysUser.getUserName());
-        loginResponse.setStatus("0");
+        if (sysUser == null) {
+            loginResponse.setStatus("0");
+        } else {
+            User user = new User();
+            user.setName(sysUser.getUserName());
+            user.setId(sysUser.getId());
+            TokenModel tokenModel = this.tokenManager.createToken(user);
+            loginResponse.setToken(tokenModel.getToken());
+            loginResponse.setUserName(sysUser.getUserName());
+            loginResponse.setStatus("1");
+        }
         return loginResponse;
     }
 
