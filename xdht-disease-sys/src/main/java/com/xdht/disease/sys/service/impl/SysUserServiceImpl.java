@@ -5,6 +5,7 @@ import com.xdht.disease.common.authorization.manager.TokenManager;
 import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.model.TokenModel;
 import com.xdht.disease.common.model.User;
+import com.xdht.disease.sys.constant.SysEnum;
 import com.xdht.disease.sys.dao.SysUserMapper;
 import com.xdht.disease.sys.model.SysUser;
 import com.xdht.disease.sys.service.SysUserService;
@@ -84,11 +85,12 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
 
         @Override
         public SysUserResponse addUser(SysUser sysUser) {
-        this.sysUserMapper.insertUseGeneratedKeys(sysUser);
-        SysUserResponse sysUserResponse = new SysUserResponse();
-        sysUserResponse.setId(sysUser.getId());
-        sysUserResponse.setUserName(sysUser.getUserName());
-        return sysUserResponse;
+            sysUser.setStatus(SysEnum.StatusEnum.STATUS_NORMAL.getCode());
+            this.insertUseGeneratedKeys(sysUser);
+            SysUserResponse sysUserResponse = new SysUserResponse();
+            sysUserResponse.setId(sysUser.getId());
+            sysUserResponse.setUserName(sysUser.getUserName());
+            return sysUserResponse;
         }
 
     @Override
@@ -101,13 +103,16 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
 
     @Override
     public SysUserResponse updateUser(SysUser sysUser) {
-
-        this.sysUserMapper.updateByPrimaryKeySelective(sysUser);
+        this.updateByPrimaryKeySelective(sysUser);
         SysUserResponse sysUserResponse = new SysUserResponse();
         sysUserResponse.setId(sysUser.getId());
         sysUserResponse.setUserName(sysUser.getUserName());
         return sysUserResponse;
     }
 
+    @Override
+    public SysUser getUserDetail(Long id) {
+        return this.sysUserMapper.selectByPrimaryKey(id);
+    }
 
 }

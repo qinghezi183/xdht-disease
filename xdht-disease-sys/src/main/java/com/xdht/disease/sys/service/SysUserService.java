@@ -27,35 +27,41 @@ public interface SysUserService extends Service<SysUser> {
      * @param sysUserRequest 查询条件
      * @return 返回结果
      */
-    public PageResult<SysUser> querySysUserPage(SysUserRequest sysUserRequest);
+    PageResult<SysUser> querySysUserPage(SysUserRequest sysUserRequest);
 
     /**
      * 查询用户列表
      * @param sysUser 查询条件
      * @return 返回结果
      */
-    public List<SysUser> querySysUserList(SysUser sysUser);
+    List<SysUser> querySysUserList(SysUser sysUser);
 
     /**
      * 添加用户
      * @param sysUser 添加用户实体
      * @return 返回结果
      */
-    public SysUserResponse  addUser(SysUser sysUser);
+    SysUserResponse  addUser(SysUser sysUser);
 
     /**
      * 删除用户
      * @param id 用户表id
      * @return 返回结果
      */
-    public SysUserResponse  deleteUser(Long id);
+    SysUserResponse  deleteUser(Long id);
 
     /**
      * 修改用户
      * @param sysUser 用户
      * @return 返回结果
      */
-    public SysUserResponse  updateUser(SysUser sysUser);
+    SysUserResponse  updateUser(SysUser sysUser);
 
+    /**
+     * 获取用户信息
+     * @param id 主键ID
+     * @return 返回结果
+     */
+    SysUser getUserDetail(Long id);
 
 }

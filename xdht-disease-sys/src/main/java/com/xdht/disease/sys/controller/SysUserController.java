@@ -1,9 +1,8 @@
 package com.xdht.disease.sys.controller;
 
-import com.xdht.disease.common.authorization.annotation.CurrentUser;
+import com.xdht.disease.common.authorization.annotation.Authorization;
 import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
-import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.SysUser;
 import com.xdht.disease.sys.service.SysUserService;
 import com.xdht.disease.sys.vo.request.SysUserRequest;
@@ -62,6 +61,11 @@ public class SysUserController {
         return new ResponseEntity<>(Result.ok(sysUserService.updateUser(sysUser)), HttpStatus.OK);
     }
 
-
+    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "获取用户信息")
+    @Authorization
+    public ResponseEntity<Result<SysUser>> getUserDetail(@PathVariable Long id) {
+        return new ResponseEntity<>(Result.ok(sysUserService.getUserDetail(id)), HttpStatus.OK);
+    }
 
 }
