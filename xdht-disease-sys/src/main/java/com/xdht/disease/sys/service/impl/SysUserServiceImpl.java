@@ -58,40 +58,41 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
     }
 
     @Override
-        public PageResult<SysUser> querySysUserPage(SysUserRequest sysUserRequest) {
-            Condition condition = new Condition(SysUser.class);
-            if (sysUserRequest.getUserName() != null){
-                condition.createCriteria().andLike("userName", "%"+sysUserRequest.getUserName()+"%");
-            }
-            PageHelper.startPage(sysUserRequest.getPageNumber(), sysUserRequest.getPageSize());
-            List<SysUser> dataList = this.sysUserMapper.selectByCondition(condition);
-            PageResult<SysUser> pageList = new PageResult<SysUser>();
-            pageList.setDataList(dataList);
-            pageList.setTotal(dataList.size());
-            return pageList;
+    public PageResult<SysUser> querySysUserPage(SysUserRequest sysUserRequest) {
+        Condition condition = new Condition(SysUser.class);
+        if (sysUserRequest.getUserName() != null){
+            condition.createCriteria().andLike("userName", "%"+sysUserRequest.getUserName()+"%");
         }
+        PageHelper.startPage(sysUserRequest.getPageNumber(), sysUserRequest.getPageSize());
+        List<SysUser> dataList = this.selectByCondition(condition);
+        Integer count = this.selectCountByCondition(condition);
+        PageResult<SysUser> pageList = new PageResult<SysUser>();
+        pageList.setDataList(dataList);
+        pageList.setTotal(count);
+        return pageList;
+    }
 
-        @Override
-        public List<SysUser> querySysUserList(SysUser sysUser) {
-            Condition condition = new Condition(SysUser.class);
-            if (sysUser.getUserName() != null){
+    @Override
+    public List<SysUser> querySysUserList(SysUser sysUser) {
+        Condition condition = new Condition(SysUser.class);
+        if (sysUser.getUserName() != null){
             condition.createCriteria().andLike("userName", "%"+sysUser.getUserName()+"%");
-            }
-            condition.setOrderByClause("id desc");
-            List<SysUser> sysUserList = this.sysUserMapper.selectByCondition(condition);
-            return sysUserList;
         }
+        condition.setOrderByClause("id desc");
+        List<SysUser> sysUserList = this.sysUserMapper.selectByCondition(condition);
+        return sysUserList;
+    }
 
 
-        @Override
-        public SysUserResponse addUser(SysUser sysUser) {
-            sysUser.setStatus(SysEnum.StatusEnum.STATUS_NORMAL.getCode());
-            this.insertUseGeneratedKeys(sysUser);
-            SysUserResponse sysUserResponse = new SysUserResponse();
-            sysUserResponse.setId(sysUser.getId());
-            sysUserResponse.setUserName(sysUser.getUserName());
-            return sysUserResponse;
-        }
+    @Override
+    public SysUserResponse addUser(SysUser sysUser) {
+        sysUser.setStatus(SysEnum.StatusEnum.STATUS_NORMAL.getCode());
+        this.insertUseGeneratedKeys(sysUser);
+        SysUserResponse sysUserResponse = new SysUserResponse();
+        sysUserResponse.setId(sysUser.getId());
+        sysUserResponse.setUserName(sysUser.getUserName());
+        return sysUserResponse;
+    }
 
     @Override
     public SysUserResponse deleteUser(Long id) {

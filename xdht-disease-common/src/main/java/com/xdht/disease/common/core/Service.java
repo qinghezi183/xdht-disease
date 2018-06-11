@@ -103,4 +103,12 @@ public interface Service<T> {
      * @return
      */
     int selectCount(T model);
+
+    /**
+     * 根据查询条件获取数量
+     * @param condition 查询提哦啊接
+     * @return 返回结果
+     */
+    int selectCountByCondition(Condition condition);
+
 }
