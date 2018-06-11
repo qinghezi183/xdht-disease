@@ -36,6 +36,12 @@
 			<artifactId>xdht-disease-common</artifactId>
 		</dependency>
 		<!-- 公共jar -->
+
+		<dependency>
+			<groupId>com.sf</groupId>
+			<artifactId>sf-sdk</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
