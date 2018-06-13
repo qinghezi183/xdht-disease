@@ -1,18 +1,14 @@
 package com.xdht.disease.sys.controller;
 
-import com.xdht.disease.common.authorization.annotation.Authorization;
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
 import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
-import com.xdht.disease.sys.model.SysUser;
 import com.xdht.disease.sys.model.SysUserRole;
 import com.xdht.disease.sys.service.SysUserRoleService;
 import com.xdht.disease.sys.vo.request.SysUserRoleRequest;
 import com.xdht.disease.sys.vo.response.SysUserResponse;
 import com.xdht.disease.sys.vo.response.SysUserRoleResponse;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;

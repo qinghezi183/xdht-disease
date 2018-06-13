@@ -12,4 +12,10 @@ public class LoginResponse {
     @ApiModelProperty("token信息")
     private String token;
 
+    @ApiModelProperty("用户名称")
+    private String userName;
+
+    @ApiModelProperty("登录结果 0失败 1成功")
+    private String status;
+
 }

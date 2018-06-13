@@ -1,9 +1,7 @@
 package com.xdht.disease.sys.service.impl;
 
 import com.xdht.disease.common.core.AbstractService;
-import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.sys.dao.RecordHealthCareProjectMapper;
-import com.xdht.disease.sys.model.RecordHealthCareData;
 import com.xdht.disease.sys.model.RecordHealthCareProject;
 import com.xdht.disease.sys.service.RecordHealthCareProjectService;
 import com.xdht.disease.sys.vo.request.RecordHealthCareProjectRequest;

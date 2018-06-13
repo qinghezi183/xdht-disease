@@ -191,4 +191,8 @@ public abstract class AbstractService<T> implements Service<T> {
     public int selectCount(T model){
         return mapper.selectCount(model);
     }
+
+    public int selectCountByCondition(Condition condition){
+        return mapper.selectCountByCondition(condition);
+    }
 }

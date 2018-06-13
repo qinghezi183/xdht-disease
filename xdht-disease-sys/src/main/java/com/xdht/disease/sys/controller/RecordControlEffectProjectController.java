@@ -1,15 +1,11 @@
 package com.xdht.disease.sys.controller;
 
 import com.xdht.disease.common.authorization.annotation.CurrentUser;
-import com.xdht.disease.common.core.PageResult;
 import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
-import com.xdht.disease.sys.model.RecordControlEffect;
 import com.xdht.disease.sys.model.RecordControlEffectProject;
 import com.xdht.disease.sys.service.RecordControlEffectProjectService;
-import com.xdht.disease.sys.service.RecordControlEffectService;
 import com.xdht.disease.sys.vo.request.RecordControlEffectProjectRequest;
-import com.xdht.disease.sys.vo.request.RecordControlEffectRequest;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
