@@ -25,7 +25,7 @@
   </resultMap>
 
 
-  <select id="queryEmployeeList" resultType="map" parameterType="java.util.List">
+  <select id="queryEmployeeList" resultMap="BaseResultMap" parameterType="java.util.List">
     select
     id
     office_id,
