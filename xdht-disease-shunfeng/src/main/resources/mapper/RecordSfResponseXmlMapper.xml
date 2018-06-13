@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdht.disease.sf.dao.RecordSfResponseXmlMapper">
+  <resultMap id="BaseResultMap" type="com.xdht.disease.shunfeng.model.SfExpressResponse">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="head" jdbcType="VARCHAR" property="head" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="mail_no" jdbcType="VARCHAR" property="mailNo" />
+    <result column="return_tracking_no" jdbcType="VARCHAR" property="returnTrackingNo" />
+    <result column="origin_code" jdbcType="VARCHAR" property="originCode" />
+    <result column="dest_code" jdbcType="VARCHAR" property="destCode" />
+    <result column="filter_result" jdbcType="INTEGER" property="filterResult" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="agent_mailno" jdbcType="VARCHAR" property="agentMailno" />
+    <result column="mapping_mark" jdbcType="VARCHAR" property="mappingMark" />
+    <result column="res_status" jdbcType="INTEGER" property="resStatus" />
+  </resultMap>
+</mapper>
