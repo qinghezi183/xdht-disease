@@ -31,31 +31,31 @@ public class RecordSceneController {
 
     @RequestMapping(value = "/recordList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "查询列表")
-    public  ResponseEntity<Result<List<RecordScene>>> recordList(@CurrentUser User user, @RequestBody RecordSceneRequest recordSceneRequest) {
+    public  ResponseEntity<Result<List<RecordScene>>> recordList(@RequestBody RecordSceneRequest recordSceneRequest) {
         return new ResponseEntity<>(Result.ok(recordSceneService.queryList(recordSceneRequest)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/recordPage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "分页查询")
-    public ResponseEntity<Result<PageResult<RecordScene>>> recordPage(@CurrentUser User user, @RequestBody RecordSceneRequest recordSceneRequest,@RequestParam Integer pageNum,@RequestParam Integer pageSize) {
+    public ResponseEntity<Result<PageResult<RecordScene>>> recordPage(@RequestBody RecordSceneRequest recordSceneRequest,@RequestParam Integer pageNum,@RequestParam Integer pageSize) {
         return new ResponseEntity<>(Result.ok(recordSceneService.queryListPage(recordSceneRequest,pageNum,pageSize)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "添加")
-    public ResponseEntity<Result<RecordScene>> addRecordScene(@CurrentUser User user, @RequestBody RecordScene recordScene) {
+    public ResponseEntity<Result<RecordScene>> addRecordScene(@RequestBody RecordScene recordScene) {
         return new ResponseEntity<>(Result.ok(recordSceneService.addRecordScene(recordScene)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "删除")
-    public ResponseEntity<Result<RecordScene>> deleteRecordScene(@CurrentUser User user, @RequestParam Long id) {
+    public ResponseEntity<Result<RecordScene>> deleteRecordScene(@RequestParam Long id) {
         return new ResponseEntity<>(Result.ok(recordSceneService.deleteRecordScene(id)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "修改")
-    public ResponseEntity<Result<RecordScene>> updateRecordScene(@CurrentUser User user, @RequestBody RecordScene recordScene) {
+    public ResponseEntity<Result<RecordScene>> updateRecordScene(@RequestBody RecordScene recordScene) {
         return new ResponseEntity<>(Result.ok(recordSceneService.updateRecordScene(recordScene)), HttpStatus.OK);
     }
 
