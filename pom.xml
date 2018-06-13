@@ -136,6 +136,14 @@
             </dependency>
             <!--ehcache-->
 
+            <!-- 顺风速运jar -->
+            <dependency>
+                <groupId>com.sf</groupId>
+                <artifactId>sf-sdk</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <!-- 顺风速运jar -->
+
             <!-- 公共jar -->
             <dependency>
                 <groupId>com.xdht.disease</groupId>
