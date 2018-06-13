@@ -79,7 +79,7 @@ public class RecordSceneServiceImpl extends AbstractService<RecordScene> impleme
 
     @Override
     public RecordScene addRecordScene(RecordScene recordScene) {
-            this.recordSceneMapper.insertUseGeneratedKeys(recordScene);
+            this.insertUseGeneratedKeys(recordScene);
             return recordScene;
     }
 
