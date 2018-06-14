@@ -7,6 +7,8 @@ import com.xdht.disease.common.core.Result;
 import com.xdht.disease.common.model.User;
 import com.xdht.disease.sys.model.RecordScene;
 import com.xdht.disease.sys.service.RecordSceneService;
+import com.xdht.disease.sys.vo.request.RecordScenQuestionnaireRequest;
+import com.xdht.disease.sys.vo.request.RecordSceneInputRequest;
 import com.xdht.disease.sys.vo.request.RecordSceneRequest;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j;
@@ -37,14 +39,20 @@ public class RecordSceneController {
 
     @RequestMapping(value = "/recordPage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "分页查询")
-    public ResponseEntity<Result<PageResult<RecordScene>>> recordPage(@RequestBody RecordSceneRequest recordSceneRequest,@RequestParam Integer pageNum,@RequestParam Integer pageSize) {
-        return new ResponseEntity<>(Result.ok(recordSceneService.queryListPage(recordSceneRequest,pageNum,pageSize)), HttpStatus.OK);
+    public ResponseEntity<Result<PageResult<RecordScene>>> recordPage(@RequestBody RecordSceneRequest recordSceneRequest) {
+        return new ResponseEntity<>(Result.ok(recordSceneService.queryListPage(recordSceneRequest)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "添加")
     public ResponseEntity<Result<RecordScene>> addRecordScene(@RequestBody RecordScene recordScene) {
         return new ResponseEntity<>(Result.ok(recordSceneService.addRecordScene(recordScene)), HttpStatus.OK);
+    }
+    @RequestMapping(value = "/addAll", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "添加")
+    public ResponseEntity<Result<RecordScene>> addAll(@RequestBody RecordSceneInputRequest recordSceneInputRequest) {
+
+        return new ResponseEntity<>(Result.ok(recordSceneService.addAll(recordSceneInputRequest)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
